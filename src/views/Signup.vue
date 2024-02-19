@@ -108,13 +108,10 @@
                 <div class="text-center">
                   <argon-button fullWidth color="dark" variant="gradient" class="my-4 mb-2">Sign up</argon-button>
                 </div>
-                <p class="text-sm mt-3 mb-0">
+                  <p class="text-sm mt-3 mb-0">
                   Already have an account?
-                  <a
-                    href="javascript:;"
-                    class="text-dark font-weight-bolder"
-                  >Sign in</a>
-                </p>
+                  <router-link to="/signin" class="text-dark font-weight-bolder">Sign in</router-link>
+                  </p>
               </form>
             </div>
           </div>
@@ -126,8 +123,6 @@
 </template>
 
 <script>
-import Navbar from "@/examples/PageLayout/Navbar.vue";
-import AppFooter from "@/examples/PageLayout/Footer.vue";
 import ArgonInput from "@/components/ArgonInput.vue";
 import ArgonCheckbox from "@/components/ArgonCheckbox.vue";
 import ArgonButton from "@/components/ArgonButton.vue";
@@ -136,8 +131,6 @@ const body = document.getElementsByTagName("body")[0];
 export default {
   name: "signup",
   components: {
-    Navbar,
-    AppFooter,
     ArgonInput,
     ArgonCheckbox,
     ArgonButton,

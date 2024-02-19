@@ -36,10 +36,10 @@
       </div>
     </div>
     <div class="row">
-      <div class="col-md-7">
+      <div class="col-md-6">
         <billing-card />
       </div>
-      <div class="col-md-5">
+      <div class="col-md-6">
         <transaction-card />
       </div>
     </div>
@@ -68,7 +68,7 @@ export default {
         classIcon: "text-white fas fa-landmark",
         title: "Overage",
         desc: "账户余额",
-        price: "$2000",
+        price: "$2000.00",
       },
       paypal: {
         classIcon: "text-white fab fa-paypal",

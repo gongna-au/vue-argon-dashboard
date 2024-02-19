@@ -3,7 +3,7 @@
     <div class="card-header pb-0 px-3">
       <div class="row">
         <div class="col-md-6">
-          <h6 class="mb-0">Transaction's</h6>
+          <h6 class="mb-0">Transaction's 银行卡支出信息</h6>
         </div>
         <div class="col-md-6 d-flex justify-content-end align-items-center">
           <i class="far fa-calendar-alt me-2" aria-hidden="true"></i>
