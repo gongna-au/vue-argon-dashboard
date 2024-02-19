@@ -1,20 +1,21 @@
 <template>
-  <div
-    class="collapse navbar-collapse w-auto h-auto h-100"
-    id="sidenav-collapse-main"
-  >
+  <div class="collapse navbar-collapse w-auto h-auto h-100" id="sidenav-collapse-main">
     <ul class="navbar-nav">
       <li class="nav-item">
-        <sidenav-item
-          url="/dashboard-default"
-          :class="getRoute() === 'dashboard-default' ? 'active' : ''"
-          :navText="this.$store.state.isRTL ? 'لوحة القيادة' : 'Dashboard'"
-        >
+        <sidenav-item url="dashboard-default" :class="getRoute() === 'dashboard-default' ? 'active' : ''" :navText="'Dashboard'">
           <template v-slot:icon>
             <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
           </template>
         </sidenav-item>
       </li>
+      <li class="nav-item">
+        <sidenav-item url="/find-parking" :class="getRoute() === 'find-parking' ? 'active' : ''" :navText="'Find Parking'">
+          <template v-slot:icon>
+            <i class="ni ni-map-big text-warning text-sm opacity-10"></i>
+          </template>
+        </sidenav-item>
+      </li>
+      
       <li class="nav-item">
         <sidenav-item
           url="/tables"
