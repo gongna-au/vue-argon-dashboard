@@ -68,14 +68,14 @@ export default {
     return {
       salary: {
         classIcon: "text-white fas fa-landmark",
-        title: "Salary",
-        desc: "Belong Interactive",
-        price: "+$2000",
+        title: "Overage",
+        desc: "账户余额",
+        price: "$2000",
       },
       paypal: {
         classIcon: "text-white fab fa-paypal",
-        title: "Paypal",
-        desc: "Freelance Payment",
+        title: "Expenses",
+        desc: "所有支出",
         price: "$455.00",
       },
     };
