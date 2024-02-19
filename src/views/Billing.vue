@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-8">
+      <div class="col-lg-12">
         <div class="row mt-4">
           <div class="col-xl-6 mb-xl-0 mb-4">
             <master-card />
@@ -50,7 +50,6 @@
 import MasterCard from "@/examples/Cards/MasterCard.vue";
 import DefaultInfoCard from "@/examples/Cards/DefaultInfoCard.vue";
 import PaymentCard from "./components/PaymentCard.vue";
-import InvoiceCard from "./components/InvoiceCard.vue";
 import BillingCard from "./components/BillingCard.vue";
 import TransactionCard from "./components/TransactionCard.vue";
 
@@ -60,7 +59,6 @@ export default {
     MasterCard,
     DefaultInfoCard,
     PaymentCard,
-    InvoiceCard,
     BillingCard,
     TransactionCard,
   },
