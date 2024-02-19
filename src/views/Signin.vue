@@ -21,13 +21,13 @@
                   <h4 class="font-weight-bolder">Sign In</h4>
                   <p class="mb-0">Enter your email and password to sign in</p>
                 </div>
-                <div class="card-body">
+                <div class="card-body" @submit.prevent="login">
                   <form role="form">
                     <div class="mb-3">
-                      <argon-input type="email" placeholder="Email" name="email" size="lg" />
+                      <argon-input v-model="phone" type="tel" placeholder="Phone" name="phone" size="lg"  @input="updatePhone($event.target.value)" />
                     </div>
                     <div class="mb-3">
-                      <argon-input type="password" placeholder="Password" name="password" size="lg" />
+                      <argon-input v-model="password" type="password" placeholder="Password" name="password" size="lg" @input="updatePassword($event.target.value)" />
                     </div>
                     <argon-switch id="rememberMe">Remember me</argon-switch>
 
@@ -92,6 +92,42 @@ export default {
     ArgonSwitch,
     ArgonButton,
   },
+  methods: {
+    updatePhone(value) {
+    this.phone = value;
+    },
+    updatePassword(value) {
+      this.password = value;
+    },
+
+    async login() {
+      try {
+        const response = await fetch("http://localhost:8083/api/v1/login/common", { // 替换为你的后端接口地址
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            phone: this.phone,
+            password: this.password,
+          }),
+        });
+        const data = await response.json();
+        if (response.ok) {
+          // 登录成功的处理逻辑，比如跳转到主页或显示成功消息
+          // 例如，跳转到主页
+          this.$router.push('/profile');
+        } else {
+          // 登录失败的处理逻辑，比如显示错误消息
+          alert('登录账号失败,响应状态: ' + data.status);
+        }
+      } catch (error) {
+        // 网络或其他错误的处理逻辑
+        alert('登录过程中发生错误：' + error.message);
+      }
+    },
+  },
+
   created() {
     this.$store.state.hideConfigButton = true;
     this.$store.state.showNavbar = false;

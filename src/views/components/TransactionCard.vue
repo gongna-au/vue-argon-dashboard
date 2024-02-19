@@ -3,7 +3,7 @@
     <div class="card-header pb-0 px-3">
       <div class="row">
         <div class="col-md-6">
-          <h6 class="mb-0">Your Transaction's</h6>
+          <h6 class="mb-0">Transaction's</h6>
         </div>
         <div class="col-md-6 d-flex justify-content-end align-items-center">
           <i class="far fa-calendar-alt me-2" aria-hidden="true"></i>
@@ -17,28 +17,7 @@
         <li
           class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg"
         >
-          <div class="d-flex align-items-center">
-            <argon-button
-              color="danger"
-              variant="outline"
-              size="sm"
-              class="btn-icon-only btn-rounded mb-0 me-3 d-flex align-items-center justify-content-center"
-            >
-              <i class="fas fa-arrow-down" aria-hidden="true"></i>
-            </argon-button>
-            <div class="d-flex flex-column">
-              <h6 class="mb-1 text-dark text-sm">Netflix</h6>
-              <span class="text-xs">27 March 2020, at 12:30 PM</span>
-            </div>
-          </div>
-          <div
-            class="d-flex align-items-center text-danger text-gradient text-sm font-weight-bold"
-          >- $ 2,500</div>
-        </li>
-        <li
-          class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg"
-        >
-          <div class="d-flex align-items-center">
+        <div class="d-flex align-items-center">
             <argon-button
               color="success"
               variant="outline"
@@ -48,7 +27,7 @@
               <i class="fas fa-arrow-up" aria-hidden="true"></i>
             </argon-button>
             <div class="d-flex flex-column">
-              <h6 class="mb-1 text-dark text-sm">Apple</h6>
+              <h6 class="mb-1 text-dark text-sm">4123 4567 8901 7852</h6>
               <span class="text-xs">27 March 2020, at 04:30 AM</span>
             </div>
           </div>
@@ -57,6 +36,7 @@
           >+ $ 2,000</div>
         </li>
       </ul>
+     
       <h6 class="text-uppercase text-body text-xs font-weight-bolder my-3">Yesterday</h6>
       <ul class="list-group">
         <li
@@ -72,7 +52,7 @@
               <i class="fas fa-arrow-up" aria-hidden="true"></i>
             </argon-button>
             <div class="d-flex flex-column">
-              <h6 class="mb-1 text-dark text-sm">Stripe</h6>
+              <h6 class="mb-1 text-dark text-sm">4123 4567 8901 7852</h6>
               <span class="text-xs">26 March 2020, at 13:45 PM</span>
             </div>
           </div>
@@ -80,6 +60,7 @@
             class="d-flex align-items-center text-success text-gradient text-sm font-weight-bold"
           >+ $ 750</div>
         </li>
+        
         <li
           class="list-group-item border-0 d-flex justify-content-between ps-0 mb-2 border-radius-lg"
         >
@@ -93,7 +74,7 @@
               <i class="fas fa-arrow-up" aria-hidden="true"></i>
             </argon-button>
             <div class="d-flex flex-column">
-              <h6 class="mb-1 text-dark text-sm">HubSpot</h6>
+              <h6 class="mb-1 text-dark text-sm">4532 9876 5432 5248</h6>
               <span class="text-xs">26 March 2020, at 12:30 PM</span>
             </div>
           </div>
@@ -114,7 +95,7 @@
               <i class="fas fa-arrow-up" aria-hidden="true"></i>
             </argon-button>
             <div class="d-flex flex-column">
-              <h6 class="mb-1 text-dark text-sm">Creative Tim</h6>
+              <h6 class="mb-1 text-dark text-sm">4532 9876 5432 5248</h6>
               <span class="text-xs">26 March 2020, at 08:30 AM</span>
             </div>
           </div>
@@ -135,7 +116,7 @@
               <i class="fas fa-exclamation" aria-hidden="true"></i>
             </argon-button>
             <div class="d-flex flex-column">
-              <h6 class="mb-1 text-dark text-sm">Webflow</h6>
+              <h6 class="mb-1 text-dark text-sm">4532 9876 5432 5248</h6>
               <span class="text-xs">26 March 2020, at 05:00 AM</span>
             </div>
           </div>

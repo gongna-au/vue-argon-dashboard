@@ -16,9 +16,6 @@
         <div class="row justify-content-center">
           <div class="col-lg-5 text-center mx-auto">
             <h1 class="text-white mb-2 mt-5">Welcome!</h1>
-            <p
-              class="text-lead text-white"
-            >Use these awesome forms to login or create new account in your project for free.</p>
           </div>
         </div>
       </div>
@@ -96,10 +93,9 @@
               </div>
             </div>
             <div class="card-body">
-              <form role="form">
-                <argon-input type="text" placeholder="Name" aria-label="Name" />
-                <argon-input type="email" placeholder="Email" aria-label="Email" />
-                <argon-input type="password" placeholder="Password" aria-label="Password" />
+              <form role="form" @submit.prevent="register">
+                <argon-input type="tel" placeholder="Phone" aria-label="Phone" @input="updatePhone($event.target.value)" />
+                <argon-input type="password" placeholder="Password" aria-label="Password"  @input="updatePassword($event.target.value)" />
                 <argon-checkbox checked>
                   <label class="form-check-label" for="flexCheckDefault">
                     I agree the
@@ -138,13 +134,51 @@ import ArgonButton from "@/components/ArgonButton.vue";
 const body = document.getElementsByTagName("body")[0];
 
 export default {
-  name: "signin",
+  name: "signup",
   components: {
     Navbar,
     AppFooter,
     ArgonInput,
     ArgonCheckbox,
     ArgonButton,
+  },
+  data() {
+    return {
+      phone: this.phone, // 初始化phone
+      password: this.password, // 初始化password
+    };
+  },
+  methods: {
+    updatePhone(value) {
+    this.phone = value;
+    },
+    updatePassword(value) {
+      this.password = value;
+    },
+    async register() {
+      try {
+        // 替换为你的后端注册接口地址和配置
+        const response = await fetch('http://localhost:8083/api/v1/sign/common', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            phone: this.phone,
+            password: this.password,
+          }),
+        });
+        const data = await response.json();
+        if (response.ok) {
+          this.$router.push('/signin');
+          // 注册成功后的操作，比如跳转到登录页
+        } else {
+          alert('注册账号失败,响应状态: ' + data.status);
+        }
+      } catch (error) {
+        alert('注册过程中发生错误：' + error.message);
+      }
+    },
   },
   created() {
     this.$store.state.hideConfigButton = true;
