@@ -1,78 +1,91 @@
 <template>
-    <div>
-      <div class="container-fluid py-4">
-        <!-- 搜索框 -->
-        <div class="mb-4">
-          <input type="text" class="form-control" placeholder="搜索附近的停车场..." />
-        </div>
-        <div class="card">
-          <div class="card-header pb-0 px-3">
-            <h6 class="mb-0">附近停车场信息</h6>
-          </div>
-          <div class="card-body pt-4 p-3">
-            <ul class="list-group">
-              <!-- 动态生成的停车场列表 -->
-              <li v-for="parking in filteredParkingList" :key="parking.name" class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-                <div class="d-flex flex-column">
-                  <h6 class="mb-3 text-sm">{{ parking.name }}</h6>
-                  <span class="mb-2 text-xs">
-                    地址: <span class="text-dark font-weight-bold ms-sm-2">{{ parking.address }}</span>
-                  </span>
-                  <span class="mb-2 text-xs">
-                    剩余停车位: <span class="text-dark ms-sm-2 font-weight-bold">{{ parking.spaces }}</span>
-                  </span>
-                  <span class="text-xs">
-                    标准收费: <span class="text-dark ms-sm-2 font-weight-bold">{{ parking.charge }}</span>
-                  </span>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
+  <div class="container-fluid py-4">
+    <!-- 搜索框 -->
+    <div class="mb-4">
+      <input type="text" class="form-control" placeholder="搜索附近的停车场..." v-model="searchQuery" @input="fetchParkingSpots">
+    </div>
+    <!-- 停车场信息展示卡片 -->
+    <div class="card">
+      <div class="card-header pb-0 px-3">
+        <h6 class="mb-0">附近停车场信息</h6>
+      </div>
+      <div class="card-body pt-4 p-3">
+        <ul class="list-group">
+          <li v-for="parking in parkingList" :key="parking.id" class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
+            <div class="d-flex flex-column">
+              <h6 class="mb-3 text-sm">{{ parking.name }}</h6>
+              <span class="mb-2 text-xs">地址: <span class="text-dark font-weight-bold ms-sm-2">{{ parking.address }}</span></span>
+              <span class="mb-2 text-xs">剩余停车位: <span class="text-dark ms-sm-2 font-weight-bold">{{ parking.spaces }}</span></span>
+              <span class="text-xs">标准收费: <span class="text-dark ms-sm-2 font-weight-bold">{{ parking.charge }}</span></span>
+              <span class="text-xs">距离: <span class="text-dark ms-sm-2 font-weight-bold">{{ parking.distance.toFixed(2) }} km</span></span>
+              <button @click="navigateTo(parking)" class="btn btn-primary">导航</button>
+            </div>
+          </li>
+        </ul>
       </div>
     </div>
-  </template>
-  
-  <script>
-  export default {
-    name: "find-parking",
-    data() {
-      return {
-        searchQuery: '',
-        parkingList: [
-          {
-            name: "Pike Place Market Parking Garage",
-            address: "1531 Western Ave, Seattle, WA 98101 US",
-            spaces: "90",
-            charge: "$8/h",
-          },
-          {
-            name: "South Place Market Parking Garage",
-            address: "3231 Western Ave, Seattle, WA 98198 US",
-            spaces: "100",
-            charge: "$7/h",
-          },
-          {
-            name: "West Place Market Parking Garage",
-            address: "1356 Western Ave, Seattle, WA 12101 US",
-            spaces: "80",
-            charge: "$6/h",
-          },
-          // 其他停车场信息...
-        ],
-      };
+  </div>
+</template>
+
+<script>
+export default {
+  name: "find-parking",
+  data() {
+    return {
+      searchQuery: '',
+      parkingList: [],
+      latitude: null,
+      longitude: null,
+    };
+  },
+  mounted() {
+    this.getUserLocation();
+  },
+  methods: {
+    getUserLocation() {
+      if (navigator.geolocation) {
+        
+        navigator.geolocation.getCurrentPosition((position) => {
+          this.latitude = position.coords.latitude;
+          this.longitude = position.coords.longitude;
+          this.fetchParkingSpots(); // 获取位置后立即搜索停车场
+        }, (error) => {
+          console.error('获取位置失败:', error);
+        });
+      } else {
+        console.error('浏览器不支持地理位置服务');
+      }
     },
-    computed: {
-      filteredParkingList() {
-        if (this.searchQuery) {
-          return this.parkingList.filter(parking =>
-            parking.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-            parking.address.toLowerCase().includes(this.searchQuery.toLowerCase())
-          );
+    async fetchParkingSpots() {
+      const url = 'http://localhost:8083/api/v1/parking/search';
+      try {
+        //alert("Latitude: " + this.latitude + "\nLongitude: " + this.longitude);
+        const response = await fetch(url, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+    
+          body: JSON.stringify({
+            latitude: this.latitude,
+            longitude: this.longitude,
+          }),
+        });
+        if (response.ok) {
+          const data = await response.json();
+          this.parkingList = data.data; // 确保这里与您的响应结构匹配
+        } else {
+          console.error('无法获取停车场信息');
         }
-        return this.parkingList;
-      },
+      } catch (error) {
+        console.error('请求停车场信息时发生错误:', error);
+      }
     },
-  };
-  </script>
-  
+    navigateTo(parking) {
+      // 实现导航逻辑，例如跳转到导航页面，并传递必要的停车场信息
+      console.log('开始导航到', parking.name);
+      // 这里可以根据您的应用逻辑进行调整
+    },
+  }
+};
+</script>
