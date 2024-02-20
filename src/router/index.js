@@ -8,7 +8,7 @@ import Profile from "../views/Profile.vue";
 import Signup from "../views/Signup.vue";
 import Signin from "../views/Signin.vue";
 import FindParking from "../views/FindParking.vue";
-
+import NavigationPage from "../views/NavigationPage.vue";
 const routes = [
   {
     path: "/",
@@ -60,7 +60,13 @@ const routes = [
     name: "FindParking",
     component: FindParking,
   },
-  
+  {
+    path: '/navigation-page',
+    name: 'NavigationPage',
+    component: NavigationPage,
+    props: true, // 确保已经设置
+  }
+
 ];
 
 const router = createRouter({

@@ -44,7 +44,6 @@ export default {
   methods: {
     getUserLocation() {
       if (navigator.geolocation) {
-        
         navigator.geolocation.getCurrentPosition((position) => {
           this.latitude = position.coords.latitude;
           this.longitude = position.coords.longitude;
@@ -83,8 +82,20 @@ export default {
     },
     navigateTo(parking) {
       // 实现导航逻辑，例如跳转到导航页面，并传递必要的停车场信息
-      console.log('开始导航到', parking.name);
+      //console.log('开始导航到', parking.name);
       // 这里可以根据您的应用逻辑进行调整
+      this.$router.push({ 
+        name: 'NavigationPage', 
+        params: { 
+          pname: parking.name,
+          paddress: parking.address,
+          pdistance: parking.distance,
+          platitude: parking.latitude,
+          plongitude: parking.longitude
+        } 
+      });
+
+      //this.$router.push({ name: 'NavigationPage', params: { pname: parking.name ,paddress :parking.address, pdistance: parking.distance,platitude: parking.latitude, plongitude:parking.longitude} });
     },
   }
 };
