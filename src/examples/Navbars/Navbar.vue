@@ -20,18 +20,7 @@
           class="pe-md-3 d-flex align-items-center"
           :class="this.$store.state.isRTL ? 'me-md-auto' : 'ms-md-auto'"
         >
-          <div class="input-group">
-            <span class="input-group-text text-body">
-              <i class="fas fa-search" aria-hidden="true"></i>
-            </span>
-            <input
-              type="text"
-              class="form-control"
-              :placeholder="
-                this.$store.state.isRTL ? 'أكتب هنا...' : 'Type here...'
-              "
-            />
-          </div>
+          
         </div>
         <ul class="navbar-nav justify-content-end">
           <li class="nav-item d-flex align-items-center">
@@ -47,7 +36,7 @@
               <span v-if="this.$store.state.isRTL" class="d-sm-inline d-none"
                 >يسجل دخول</span
               >
-              <span v-else class="d-sm-inline d-none">Sign In</span>
+              <span v-else class="d-sm-inline d-none">Sign Out</span>
             </router-link>
           </li>
           <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -89,29 +78,7 @@
               :class="showMenu ? 'show' : ''"
               aria-labelledby="dropdownMenuButton"
             >
-              <li class="mb-2">
-                <a class="dropdown-item border-radius-md" href="javascript:;">
-                  <div class="py-1 d-flex">
-                    <div class="my-auto">
-                      <img
-                        src="../../assets/img/team-2.jpg"
-                        class="avatar avatar-sm me-3"
-                        alt="user image"
-                      />
-                    </div>
-                    <div class="d-flex flex-column justify-content-center">
-                      <h6 class="mb-1 text-sm font-weight-normal">
-                        <span class="font-weight-bold">New message</span> from
-                        Laur
-                      </h6>
-                      <p class="mb-0 text-xs text-secondary">
-                        <i class="fa fa-clock me-1"></i>
-                        13 minutes ago
-                      </p>
-                    </div>
-                  </div>
-                </a>
-              </li>
+              
               <li class="mb-2">
                 <a class="dropdown-item border-radius-md" href="javascript:;">
                   <div class="py-1 d-flex">
@@ -124,8 +91,7 @@
                     </div>
                     <div class="d-flex flex-column justify-content-center">
                       <h6 class="mb-1 text-sm font-weight-normal">
-                        <span class="font-weight-bold">New album</span> by
-                        Travis Scott
+                        A payment is pending
                       </h6>
                       <p class="mb-0 text-xs text-secondary">
                         <i class="fa fa-clock me-1"></i>

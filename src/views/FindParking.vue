@@ -3,7 +3,7 @@
       <div class="container-fluid py-4">
         <!-- 搜索框 -->
         <div class="mb-4">
-          <input type="text" class="form-control" placeholder="搜索附近的停车场..." v-model="searchQuery" />
+          <input type="text" class="form-control" placeholder="搜索附近的停车场..." />
         </div>
         <div class="card">
           <div class="card-header pb-0 px-3">
@@ -45,6 +45,18 @@
             address: "1531 Western Ave, Seattle, WA 98101 US",
             spaces: "90",
             charge: "$8/h",
+          },
+          {
+            name: "South Place Market Parking Garage",
+            address: "3231 Western Ave, Seattle, WA 98198 US",
+            spaces: "100",
+            charge: "$7/h",
+          },
+          {
+            name: "West Place Market Parking Garage",
+            address: "1356 Western Ave, Seattle, WA 12101 US",
+            spaces: "80",
+            charge: "$6/h",
           },
           // 其他停车场信息...
         ],
