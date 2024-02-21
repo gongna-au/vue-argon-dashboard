@@ -11,14 +11,17 @@
       </div>
       <div class="card-body pt-4 p-3">
         <ul class="list-group">
-          <li v-for="parking in parkingList" :key="parking.id" class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-            <div class="d-flex flex-column">
+          <li v-for="parking in parkingList" :key="parking.id" class="list-group-item border-0 d-flex mb-2 bg-gray-100 border-radius-lg">
+            <div class="d-flex flex-column flex-grow-1">
               <h6 class="mb-3 text-sm">{{ parking.name }}</h6>
               <span class="mb-2 text-xs">地址: <span class="text-dark font-weight-bold ms-sm-2">{{ parking.address }}</span></span>
               <span class="mb-2 text-xs">剩余停车位: <span class="text-dark ms-sm-2 font-weight-bold">{{ parking.spaces }}</span></span>
               <span class="text-xs">标准收费: <span class="text-dark ms-sm-2 font-weight-bold">{{ parking.charge }}</span></span>
               <span class="text-xs">距离: <span class="text-dark ms-sm-2 font-weight-bold">{{ parking.distance.toFixed(2) }} km</span></span>
-              <button @click="navigateTo(parking)" class="btn btn-primary">导航</button>
+            </div>
+            <div class="d-flex flex-column justify-content-between">
+              <button @click="navigateTo(parking)" class="btn btn-primary mb-2">导航</button>
+              <button @click="showReservationCard = true" class="btn btn-success" >预定</button> <reservation-card v-if="showReservationCard" />
             </div>
           </li>
         </ul>
@@ -28,7 +31,12 @@
 </template>
 
 <script>
+import ReservationCard from "./components/ReservationCard.vue";
+
 export default {
+  components: {
+    ReservationCard
+  },
   name: "find-parking",
   data() {
     return {
@@ -36,12 +44,21 @@ export default {
       parkingList: [],
       latitude: null,
       longitude: null,
+      showReservationCard: false,
     };
   },
   mounted() {
     this.getUserLocation();
   },
   methods: {
+    reserveParking(parking) {
+    // 在实际应用中，这里可以是打开一个预定模态窗口的逻辑，
+    // 或者使用Vue Router导航到一个预定页面，并传递所选停车场的信息
+    alert(`预定停车场: ${parking.name}`);
+    
+    // 例如，使用Vue Router导航
+    // this.$router.push({ name: 'ReserveParkingPage', params: { parkingId: parking.id }});
+    },
     getUserLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -100,3 +117,4 @@ export default {
   }
 };
 </script>
+

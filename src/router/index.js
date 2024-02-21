@@ -10,6 +10,8 @@ import Signin from "../views/Signin.vue";
 import FindParking from "../views/FindParking.vue";
 import NavigationPage from "../views/NavigationPage.vue";
 import MapWithOpenRouteService from "../views/MapWithOpenRouteService.vue";
+import RealTimeParking from "../views/RealTimeParking.vue";
+import ReserveParking  from "../views/ReserveParking.vue";
 const routes = [
   {
     path: "/",
@@ -71,6 +73,18 @@ const routes = [
     path: '/map-with-open-route-service',
     name: 'MapWithOpenRouteService',
     component: MapWithOpenRouteService,
+    props: true, // 确保已经设置
+  },
+  {
+    path: '/real-time-parking',
+    name: 'RealTimeParking',
+    component: RealTimeParking,
+    props: true, // 确保已经设置
+  },
+  {
+    path: '/reserve-parking',
+    name: 'ReserveParking',
+    component: ReserveParking,
     props: true, // 确保已经设置
   }
 
