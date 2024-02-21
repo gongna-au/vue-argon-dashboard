@@ -21,7 +21,8 @@
             </div>
             <div class="d-flex flex-column justify-content-between">
               <button @click="navigateTo(parking)" class="btn btn-primary mb-2">导航</button>
-              <button @click="showReservationCard = true" class="btn btn-success" >预定</button> <reservation-card v-if="showReservationCard" />
+              <button @click="toggleReservationCard(parking)" class="btn btn-success">预定</button> 
+              <reservation-card v-if="parking.showReservationCard" />
             </div>
           </li>
         </ul>
@@ -51,6 +52,10 @@ export default {
     this.getUserLocation();
   },
   methods: {
+    toggleReservationCard(parking) {
+      // 切换当前点击的停车场的预定卡片显示状态
+      parking.showReservationCard = !parking.showReservationCard;
+    },
     reserveParking(parking) {
     // 在实际应用中，这里可以是打开一个预定模态窗口的逻辑，
     // 或者使用Vue Router导航到一个预定页面，并传递所选停车场的信息

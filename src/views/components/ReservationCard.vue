@@ -13,13 +13,36 @@
             <!-- 更多信息 -->
           </div>
           <!-- 操作按钮，如取消预定等 -->
-          <div class="ms-auto text-end">
-            <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;">
-              <i class="fas fa-times-circle me-2" aria-hidden="true"></i>Cancel Reservation
-            </a>
+          <div class="d-flex flex-column mb-3">
+              <label for="reservation-date" class="form-label">选择预定日期:</label>
+              <input type="date" id="reservation-date" v-model="reservationDate" :min="minDate" class="form-control">
           </div>
+          <button class="btn btn-primary" @click="showPaymentCard = true">确定预定</button>
+          <button class="btn btn-primary" @click="showPaymentCard = true">取消预定</button>
         </li>
       </ul>
+      <!-- 支付卡片 -->
+      <div v-if="showPaymentCard" class="mt-4">
+        <div class="card">
+          <div class="card-body">
+            
+            <div class="mb-3">
+              <label for="bank-card" class="form-label">选择银行卡:</label>
+              <select id="bank-card" v-model="selectedBankCard" class="form-select">
+                <option value="" disabled>请选择银行卡</option>
+                <!-- 示例银行卡选项 -->
+                <option value="card1">银行卡1</option>
+                <option value="card2">银行卡2</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="password" class="form-label">输入密码:</label>
+              <input type="password" id="password" v-model="password" class="form-control">
+            </div>
+            <button class="btn btn-success" @click="submitPayment">支付</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -28,5 +51,37 @@
 export default {
   name: "reservation-card",
   // Props, data, methods等可以根据需要添加
+  data() {
+    return {
+      reservationDate: '',
+      minDate: new Date().toISOString().split('T')[0],
+      showPaymentCard: false,
+      selectedBankCard: '',
+      password: '',
+    };
+  },
+  methods: {
+    async submitPayment() {
+      // 这里应该是发送请求到后端的函数
+      const response = await this.makePaymentRequest();
+      if (response === 'OK') {
+        alert('支付成功！');
+        // 清除或重置表单
+        this.resetForm();
+      } else {
+        alert('支付失败，请重试。');
+      }
+    },
+    makePaymentRequest() {
+      // 模拟后端支付请求
+      console.log("Paying with", this.selectedBankCard, "and password", this.password);
+      return new Promise(resolve => setTimeout(() => resolve('OK'), 1000));
+    },
+    resetForm() {
+      this.showPaymentCard = false;
+      this.selectedBankCard = '';
+      this.password = '';
+    }
+  }
 };
 </script>
