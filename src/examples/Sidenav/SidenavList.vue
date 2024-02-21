@@ -8,6 +8,7 @@
           </template>
         </sidenav-item>
       </li>
+      
       <li class="nav-item">
         <sidenav-item url="/find-parking" :class="getRoute() === 'find-parking' ? 'active' : ''" :navText="'Find Parking'">
           <template v-slot:icon>
@@ -17,18 +18,53 @@
       </li>
       
       <li class="nav-item">
-        <sidenav-item
-          url="/tables"
-          :class="getRoute() === 'tables' ? 'active' : ''"
-          :navText="this.$store.state.isRTL ? 'الجداول' : 'Tables'"
-        >
+        <sidenav-item url="/parking-history" :class="getRoute() === 'parking-history' ? 'active' : ''" :navText="'Parking History'">
           <template v-slot:icon>
-            <i
-              class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"
-            ></i>
+            <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
           </template>
         </sidenav-item>
       </li>
+
+      <li class="nav-item">
+        <sidenav-item url="/real-time-parking" :class="getRoute() === 'real-time-parking' ? 'active' : ''" :navText="'Real-time Parking'">
+          <template v-slot:icon>
+            <i class="ni ni-pin-3 text-success text-sm opacity-10"></i>
+          </template>
+        </sidenav-item>
+      </li>
+
+      <li class="nav-item">
+        <sidenav-item url="/reserve-parking" :class="getRoute() === 'reserve-parking' ? 'active' : ''" :navText="'Reserve Parking'">
+          <template v-slot:icon>
+            <i class="ni ni-calendar-grid-58 text-primary text-sm opacity-10"></i>
+          </template>
+        </sidenav-item>
+      </li>
+
+      <li class="nav-item">
+        <sidenav-item url="/parking-history" :class="getRoute() === 'parking-history' ? 'active' : ''" :navText="'Parking History'">
+          <template v-slot:icon>
+            <i class="ni ni-books text-info text-sm opacity-10"></i>
+          </template>
+        </sidenav-item>
+      </li>
+
+      <li class="nav-item">
+        <sidenav-item url="/cost-calculator" :class="getRoute() === 'cost-calculator' ? 'active' : ''" :navText="'Cost Calculator'">
+          <template v-slot:icon>
+            <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
+          </template>
+        </sidenav-item>
+      </li>
+
+      <li class="nav-item">
+        <sidenav-item url="/feedback" :class="getRoute() === 'feedback' ? 'active' : ''" :navText="'Feedback'">
+          <template v-slot:icon>
+            <i class="ni ni-send text-danger text-sm opacity-10"></i>
+          </template>
+        </sidenav-item>
+      </li>
+
       <li class="nav-item">
         <sidenav-item
           url="/billing"

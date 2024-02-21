@@ -15,13 +15,11 @@
 
 <script>
 import AuthorsTable from "./components/AuthorsTable.vue";
-import ProjectsTable from "./components/ProjectsTable.vue";
 
 export default {
-  name: "tables",
+  name: "parking-history",
   components: {
     AuthorsTable,
-    ProjectsTable
   },
   data() {
     return {

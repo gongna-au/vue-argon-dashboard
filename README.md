@@ -27,3 +27,19 @@ npm install @vue/cli-service --save-dev
 
 ## 接口
 
+
+```shell
+npm install openrouteservice-js
+```
+
+```shell
+npm install --save leaflet-routing-machine      
+```
+
+```shell
+npm install leaflet
+```
+
+```shell
+npm install --save axios
+```

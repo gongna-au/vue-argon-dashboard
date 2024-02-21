@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Dashboard from "../views/Dashboard.vue";
-import Tables from "../views/Tables.vue";
+import ParkingHistory from "../views/ParkingHistory.vue";
 import Billing from "../views/Billing.vue";
 import VirtualReality from "../views/VirtualReality.vue";
 import RTL from "../views/Rtl.vue";
@@ -9,6 +9,7 @@ import Signup from "../views/Signup.vue";
 import Signin from "../views/Signin.vue";
 import FindParking from "../views/FindParking.vue";
 import NavigationPage from "../views/NavigationPage.vue";
+import MapWithOpenRouteService from "../views/MapWithOpenRouteService.vue";
 const routes = [
   {
     path: "/",
@@ -21,9 +22,9 @@ const routes = [
     component: Dashboard,
   },
   {
-    path: "/tables",
-    name: "Tables",
-    component: Tables,
+    path: "/parking-history",
+    name: "ParkingHistory",
+    component: ParkingHistory,
   },
   {
     path: "/billing",
@@ -64,6 +65,12 @@ const routes = [
     path: '/navigation-page',
     name: 'NavigationPage',
     component: NavigationPage,
+    props: true, // 确保已经设置
+  },
+  {
+    path: '/map-with-open-route-service',
+    name: 'MapWithOpenRouteService',
+    component: MapWithOpenRouteService,
     props: true, // 确保已经设置
   }
 
