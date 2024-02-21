@@ -21,8 +21,8 @@
             </div>
             <div class="d-flex flex-column justify-content-between">
               <button @click="navigateTo(parking)" class="btn btn-primary mb-2">导航</button>
-              <button @click="toggleReservationCard(parking)" class="btn btn-success">预定</button> 
-              <reservation-card v-if="parking.showReservationCard" />
+              <button @click="toggleReservationCard(parking)" class="btn btn-success">预定</button>
+              <reservation-card v-if="parking.showReservationCard" @cancel-reservation="hideReservationCard(parking)" />
             </div>
           </li>
         </ul>
@@ -52,6 +52,10 @@ export default {
     this.getUserLocation();
   },
   methods: {
+    hideReservationCard(parking) {
+      // 隐藏预定卡片
+      parking.showReservationCard = false;
+    },
     toggleReservationCard(parking) {
       // 切换当前点击的停车场的预定卡片显示状态
       parking.showReservationCard = !parking.showReservationCard;
@@ -122,4 +126,5 @@ export default {
   }
 };
 </script>
+
 

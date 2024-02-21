@@ -17,12 +17,10 @@
               <label for="reservation-date" class="form-label">选择预定日期:</label>
               <input type="date" id="reservation-date" v-model="reservationDate" :min="minDate" class="form-control">
           </div>
-          <button class="btn btn-primary" @click="showPaymentCard = true">确定预定</button>
-          <button class="btn btn-primary" @click="showPaymentCard = true">取消预定</button>
         </li>
       </ul>
       <!-- 支付卡片 -->
-      <div v-if="showPaymentCard" class="mt-4">
+      <div class="mt-4">
         <div class="card">
           <div class="card-body">
             
@@ -40,6 +38,7 @@
               <input type="password" id="password" v-model="password" class="form-control">
             </div>
             <button class="btn btn-success" @click="submitPayment">支付</button>
+            <button class="btn btn-danger" @click="cancelPayment">取消</button>
           </div>
         </div>
       </div>
@@ -61,13 +60,17 @@ export default {
     };
   },
   methods: {
+    cancelPayment(){
+      this.$emit('cancel-reservation');
+    },
     async submitPayment() {
       // 这里应该是发送请求到后端的函数
       const response = await this.makePaymentRequest();
       if (response === 'OK') {
         alert('支付成功！');
         // 清除或重置表单
-        this.resetForm();
+        //this.resetForm();
+        this.$emit('cancel-reservation');
       } else {
         alert('支付失败，请重试。');
       }
