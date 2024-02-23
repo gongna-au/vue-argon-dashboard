@@ -30,7 +30,7 @@
               Reservation End: <span class="text-dark ms-sm-2 font-weight-bold">{{ reserve.end_time }}</span>
             </span>
           </div>
-          
+         
           <div class="ms-auto text-end">
             <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;" @click="cancelReservation(reserve.id)">
               <i class="far fa-trash-alt me-2" aria-hidden="true"></i>Cancel
@@ -38,6 +38,15 @@
             <a class="btn btn-link text-dark px-3 mb-0" href="javascript:;" @click="showQrCode(reserve.id)">
               <i class="fas fa-pencil-alt text-dark me-2" aria-hidden="true"></i>Show
             </a>
+            <!-- 将模态框放在这里，为每个预定信息单独控制显示 -->
+            <div v-if="reserve.showModal" class="modal-overlay" @click="hideModal(reserve.id)">
+              <div class="modal-content" @click.stop>
+                <span class="close-modal" @click="hideModal(reserve.id)">&times;</span>
+                <div class="qr-code-container">
+                  <img :src="`https://pic.616pic.com/ys_bnew_img/00/20/96/fRO0HKOZWx.jpg`" alt="QR Code" />
+                </div>
+              </div>
+            </div>
           </div>
         </li>
       </ul>
@@ -52,20 +61,35 @@ export default {
   data() {
     return {
       reserveList: [],
+      showModal: false, // 控制模态框是否显示
+      currentReservationId: null, // 当前选中的预约ID
     };
   },
   mounted() {
     this.fetchParkingReserve();
   },
   methods: {
+    showQrCode(reservationId) {
+      this.reserveList = this.reserveList.map(item =>
+        item.id === reservationId ? { ...item, showModal: true } : item
+      );
+    },
+    hideModal(reservationId) {
+      this.reserveList = this.reserveList.map(item =>
+        item.id === reservationId ? { ...item, showModal: false } : item
+      );
+    },
+
     async fetchParkingReserve() {
       const userId = this.$store.state.userId; // 从store获取userId
       const url = `http://localhost:8083/api/v1/parking/reserve?userId=${userId}`;
       try {
         const response = await fetch(url);
         if (response.ok) {
-          const { data } = await response.json();
-          this.reserveList = data; // 直接使用API返回的数据
+          let { data } = await response.json();
+          // 为每个预定信息添加showModal属性
+          data = data.map(item => ({ ...item, showModal: false }));
+          this.reserveList = data;
         } else {
           console.error('Failed to fetch parking reserve');
         }
@@ -88,12 +112,8 @@ export default {
         console.error('Error cancelling reservation:', error);
       }
     },
-    showQrCode(reservationId) {
-      // 假设有一个方法获取二维码数据或链接
-      // 这里简单弹出一个消息框作为示例
-      alert(`QR Code for reservation ID: ${reservationId}. Implement QR code display logic here.`);
-      // 实际应用中，可能需要在这里设置一个模态框来显示二维码图片
-    },
+   
   }
 };
 </script>
+
