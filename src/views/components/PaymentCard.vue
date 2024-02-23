@@ -15,13 +15,16 @@
         <!-- 添加银行卡的表单 -->
         <div v-if="showAddCardForm" class="mt-3">
           <div class="input-group mb-3">
+            <input type="text" v-model="newCard.bankName" placeholder="Card Back" class="form-control">
+          </div>
+          <div class="input-group mb-3">
             <input type="text" v-model="newCard.cardNumber" placeholder="Card Number" class="form-control">
           </div>
           <div class="input-group mb-3">
-            <input type="text" v-model="newCard.expiryDate" placeholder="Expiry Date (YYYY-MM)" class="form-control">
+            <input type="password" v-model="newCard.cardPassword" placeholder="Password" class="form-control">
           </div>
           <div class="input-group mb-3">
-            <input type="password" v-model="newCard.cardPassword" placeholder="Password" class="form-control">
+            <input type="text" v-model="newCard.expiryDate" placeholder="Expiry Date (YYYY-MM)" class="form-control">
           </div>
           <argon-button color="success" variant="gradient" @click="submitNewCard">
             Submit
