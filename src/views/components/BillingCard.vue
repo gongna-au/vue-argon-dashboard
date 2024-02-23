@@ -1,7 +1,7 @@
 <template>
   <div class="card">
     <div class="card-header pb-0 px-3">
-      <h6 class="mb-0">Detail Billing Information 详细的停车信息</h6>
+      <h6 class="mb-0">Detail Billing Reserve Information 已预定的停车场</h6>
     </div>
     <div class="card-body pt-4 p-3">
       <ul class="list-group">

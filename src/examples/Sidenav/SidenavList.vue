@@ -16,27 +16,11 @@
           </template>
         </sidenav-item>
       </li>
-      
-      <li class="nav-item">
-        <sidenav-item url="/parking-history" :class="getRoute() === 'parking-history' ? 'active' : ''" :navText="'Parking History'">
-          <template v-slot:icon>
-            <i class="ni ni-calendar-grid-58 text-warning text-sm opacity-10"></i>
-          </template>
-        </sidenav-item>
-      </li>
 
       <li class="nav-item">
         <sidenav-item url="/real-time-parking" :class="getRoute() === 'real-time-parking' ? 'active' : ''" :navText="'Real-time Parking'">
           <template v-slot:icon>
             <i class="ni ni-pin-3 text-success text-sm opacity-10"></i>
-          </template>
-        </sidenav-item>
-      </li>
-
-      <li class="nav-item">
-        <sidenav-item url="/reserve-parking" :class="getRoute() === 'reserve-parking' ? 'active' : ''" :navText="'Reserve Parking'">
-          <template v-slot:icon>
-            <i class="ni ni-calendar-grid-58 text-primary text-sm opacity-10"></i>
           </template>
         </sidenav-item>
       </li>

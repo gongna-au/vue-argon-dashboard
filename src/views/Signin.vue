@@ -110,14 +110,16 @@ export default {
             password: this.password,
           }),
         });
-        const data = await response.json();
+        const res = await response.json();
         if (response.ok) {
+          this.$store.state.userId = res.data.userId
+          //this.$store.dispatch('updateUserId', res.data.userId); // 假设后端返回的数据中包含userId
           // 登录成功的处理逻辑，比如跳转到主页或显示成功消息
           // 例如，跳转到主页
           this.$router.push('/profile');
         } else {
           // 登录失败的处理逻辑，比如显示错误消息
-          alert('登录账号失败,响应状态: ' + data.status);
+          alert('登录账号失败,响应状态: ' + res.code);
         }
       } catch (error) {
         // 网络或其他错误的处理逻辑

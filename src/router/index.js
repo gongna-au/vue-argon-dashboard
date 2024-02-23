@@ -11,7 +11,6 @@ import FindParking from "../views/FindParking.vue";
 import NavigationPage from "../views/NavigationPage.vue";
 import MapWithOpenRouteService from "../views/MapWithOpenRouteService.vue";
 import RealTimeParking from "../views/RealTimeParking.vue";
-import ReserveParking  from "../views/ReserveParking.vue";
 const routes = [
   {
     path: "/",
@@ -80,14 +79,7 @@ const routes = [
     name: 'RealTimeParking',
     component: RealTimeParking,
     props: true, // 确保已经设置
-  },
-  {
-    path: '/reserve-parking',
-    name: 'ReserveParking',
-    component: ReserveParking,
-    props: true, // 确保已经设置
   }
-
 ];
 
 const router = createRouter({

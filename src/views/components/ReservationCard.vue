@@ -29,8 +29,8 @@
               <select id="bank-card" v-model="selectedBankCard" class="form-select">
                 <option value="" disabled>请选择银行卡</option>
                 <!-- 示例银行卡选项 -->
-                <option value="card1">银行卡1</option>
-                <option value="card2">银行卡2</option>
+                <option value="card1">**** **** **** 7852</option>
+                <option value="card2">**** **** **** 5248</option>
               </select>
             </div>
             <div class="mb-3">

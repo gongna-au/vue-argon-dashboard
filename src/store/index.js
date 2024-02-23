@@ -2,6 +2,7 @@ import { createStore } from "vuex";
 
 export default createStore({
   state: {
+    userId: null, // 添加这行
     hideConfigButton: false,
     isPinned: true,
     showConfig: false,
@@ -21,6 +22,9 @@ export default createStore({
   mutations: {
     toggleConfigurator(state) {
       state.showConfig = !state.showConfig;
+    },
+    setUserId(state, userId) { // 添加这个mutation
+      state.userId = userId;
     },
     navbarMinimize(state) {
       const sidenav_show = document.querySelector(".g-sidenav-show");
@@ -49,7 +53,11 @@ export default createStore({
   actions: {
     toggleSidebarColor({ commit }, payload) {
       commit("sidebarType", payload);
-    }
+    },
+    // 其他actions
+    updateUserId({ commit }, userId) { // 添加updateUserId
+      commit('setUserId', userId);
+    },
   },
   getters: {}
 });
