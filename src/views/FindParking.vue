@@ -96,9 +96,9 @@ export default {
             longitude: this.longitude,
           }),
         });
-        if (response.ok) {
-          const data = await response.json();
-          this.parkingList = data.data; // 确保这里与您的响应结构匹配
+        const res = await response.json();
+        if (res.code==200) {
+          this.parkingList = res.data; // 确保这里与响应结构匹配
         } else {
           console.error('无法获取停车场信息');
         }

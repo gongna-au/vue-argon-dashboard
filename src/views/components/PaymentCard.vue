@@ -15,16 +15,16 @@
         <!-- 添加银行卡的表单 -->
         <div v-if="showAddCardForm" class="mt-3">
           <div class="input-group mb-3">
-            <input type="text" v-model="newCard.bankName" placeholder="Card Back" class="form-control">
+            <input type="text" v-model="newCard.bankName" placeholder="Bank Name" class="form-control">
           </div>
           <div class="input-group mb-3">
             <input type="text" v-model="newCard.cardNumber" placeholder="Card Number" class="form-control">
           </div>
           <div class="input-group mb-3">
-            <input type="password" v-model="newCard.cardPassword" placeholder="Password" class="form-control">
+            <input type="text" v-model="newCard.cardPassword" placeholder="Password" class="form-control">
           </div>
           <div class="input-group mb-3">
-            <input type="text" v-model="newCard.expiryDate" placeholder="Expiry Date (YYYY-MM)" class="form-control">
+            <input type="text" v-model="newCard.expiryDate" placeholder="Expiry Date (YYYY-MM-DD)" class="form-control">
           </div>
           <argon-button color="success" variant="gradient" @click="submitNewCard">
             Submit
@@ -79,6 +79,7 @@ export default {
       img2,
       showAddCardForm: false, // 控制添加新卡表单的显示
       newCard: { // 新银行卡信息
+        userId:0,
         bankName: '', // 确保添加了bankName字段
         cardNumber: '',
         cardPassword: '',
@@ -107,9 +108,10 @@ export default {
       }
     },
     async submitNewCard() {
-      const userId = this.$store.state.userId; // 从全局store获取userId
+      this.newCard.userId = this.$store.state.userId; // 从全局store获取userId
+      alert("userId"+ this.newCard.userId+"cardNumber"+this.newCard.cardNumber+"this.newCard.cardPassword"+this.newCard.cardPassword)
       const cardData = {
-      user_id: userId,
+      user_id:  this.newCard.userId,
       card_number: this.newCard.cardNumber,
       card_password: this.newCard.cardPassword,
       bank_name: this.newCard.bankName,
@@ -124,9 +126,9 @@ export default {
             body: JSON.stringify(cardData), // 使用用户填写的表单数据
           });
           const res = await response.json();
-          if (response.ok) {
+          if (res.code == 200) {
             alert('绑定银行卡成功 ' + res.code);
-            this.cards.push(response.data);
+            this.cards.push(cardData.card_number);
             this.showAddCardForm = false;
             // 重置表单，包括移除用户ID
             this.newCard = { bankName: '', cardNumber: '', cardPassword: '', expiryDate: '' };
