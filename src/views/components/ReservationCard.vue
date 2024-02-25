@@ -23,16 +23,16 @@
       <div class="mt-4">
         <div class="card">
           <div class="card-body">
-            
             <div class="mb-3">
               <label for="bank-card" class="form-label">选择银行卡:</label>
               <select id="bank-card" v-model="selectedBankCard" class="form-select">
                 <option value="" disabled>请选择银行卡</option>
-                <!-- 示例银行卡选项 -->
-                <option value="card1">**** **** **** 7852</option>
-                <option value="card2">**** **** **** 5248</option>
-              </select>
-            </div>
+                <!-- 动态生成银行卡选项 -->
+                <option v-for="(card, index) in bankCards" :key="index" :value="card">
+                  **** **** **** {{ card.slice(-4) }}
+                </option>
+             </select>            
+          </div>
             <div class="mb-3">
               <label for="password" class="form-label">输入密码:</label>
               <input type="password" id="password" v-model="password" class="form-control">
@@ -57,9 +57,28 @@ export default {
       showPaymentCard: false,
       selectedBankCard: '',
       password: '',
+      bankCards: [], // 用于存储从后端获取的银行卡信息
     };
   },
+  async mounted() {
+    await this.fetchBankCards();
+  },
   methods: {
+    async fetchBankCards() {
+      const userId = this.$store.state.userId;
+      try {
+        const response = await fetch(`http://localhost:8083/api/v1/user/cards?userId=${userId}`);
+        const res = await response.json();
+        if (res.code==200) {
+          this.bankCards = res.data; // 更新cards数组
+        } else {
+          alert('获取绑定的银行卡信息失败')
+        }
+      } catch (error) {
+        alert('获取绑定的银行卡信息异常')
+        console.error('Error fetching bankCards:', error);
+      }
+    },
     cancelPayment(){
       this.$emit('cancel-reservation');
     },
