@@ -2,7 +2,7 @@ import { createStore } from "vuex";
 
 export default createStore({
   state: {
-    userId: 14, // 添加这行
+    userId: 0, // 添加这行
     hideConfigButton: false,
     isPinned: true,
     showConfig: false,

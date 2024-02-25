@@ -169,7 +169,7 @@ export default {
           alert('注册账号失败,响应状态: ' + data.status);
         }
       } catch (error) {
-        alert('注册过程中发生错误：' + error.message);
+        alert('注册过程中发生错误：' + error);
       }
     },
   },

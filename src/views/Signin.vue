@@ -48,6 +48,7 @@
                     <a
                       href="javascript:;"
                       class="text-success text-gradient font-weight-bold"
+                      @click="navigateToRegister"
                     >Sign up</a>
                   </p>
                 </div>
@@ -97,7 +98,9 @@ export default {
     updatePassword(value) {
       this.password = value;
     },
-
+    navigateToRegister() {
+      this.$router.push('/signup'); // 使用路由名称或路径
+    },
     async login() {
       try {
         const response = await fetch("http://localhost:8083/api/v1/login/common", { // 替换为你的后端接口地址
@@ -111,7 +114,7 @@ export default {
           }),
         });
         const res = await response.json();
-        if (response.ok) {
+        if (res.code==200) {
           this.$store.state.userId = res.data.userId
           //this.$store.dispatch('updateUserId', res.data.userId); // 假设后端返回的数据中包含userId
           // 登录成功的处理逻辑，比如跳转到主页或显示成功消息
