@@ -109,7 +109,6 @@ export default {
     },
     async submitNewCard() {
       this.newCard.userId = this.$store.state.userId; // 从全局store获取userId
-      alert("userId"+ this.newCard.userId+"cardNumber"+this.newCard.cardNumber+"this.newCard.cardPassword"+this.newCard.cardPassword)
       const cardData = {
       user_id:  this.newCard.userId,
       card_number: this.newCard.cardNumber,

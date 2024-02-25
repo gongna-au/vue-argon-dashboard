@@ -65,8 +65,8 @@ export default {
       currentReservationId: null, // 当前选中的预约ID
     };
   },
-  mounted() {
-    this.fetchParkingReserve();
+  async mounted() {
+    await this.fetchParkingReserve();
   },
   methods: {
     showQrCode(reservationId) {
