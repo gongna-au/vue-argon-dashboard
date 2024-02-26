@@ -9,7 +9,7 @@
       </li>
 
       <li class="nav-item">
-        <sidenav-item url="dashboard-default" :class="getRoute() === 'dashboard-default' ? 'active' : ''" :navText="'Dashboard'">
+        <sidenav-item url="dashboard-default" :class="getRoute() === 'dashboard-default' ? 'active' : ''" :navText="'Report'">
           <template v-slot:icon>
             <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
           </template>
