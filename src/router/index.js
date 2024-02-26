@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Dashboard from "../views/Dashboard.vue";
+import ReportDashboard from "../views/ReportDashboard.vue";
 import ParkingHistory from "../views/ParkingHistory.vue";
 import Billing from "../views/Billing.vue";
 import VirtualReality from "../views/VirtualReality.vue";
@@ -11,6 +11,8 @@ import FindParking from "../views/FindParking.vue";
 import NavigationPage from "../views/NavigationPage.vue";
 import MapWithOpenRouteService from "../views/MapWithOpenRouteService.vue";
 import RealTimeParking from "../views/RealTimeParking.vue";
+import LicensePlateRecognition from "../views/LicensePlateRecognition.vue";
+
 const routes = [
   {
     path: "/",
@@ -18,9 +20,9 @@ const routes = [
     redirect: "/signup",
   },
   {
-    path: "/dashboard-default",
-    name: "Dashboard",
-    component: Dashboard,
+    path: "/report-dashboard",
+    name: "ReportDashboard",
+    component: ReportDashboard,
   },
   {
     path: "/parking-history",
@@ -79,7 +81,13 @@ const routes = [
     name: 'RealTimeParking',
     component: RealTimeParking,
     props: true, // 确保已经设置
-  }
+  },
+  {
+    path: '/license-plate-recognition',
+    name: 'LicensePlateRecognition',
+    component: LicensePlateRecognition,
+    props: true, // 确保已经设置
+  },
 ];
 
 const router = createRouter({

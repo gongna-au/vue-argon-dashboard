@@ -32,7 +32,7 @@
             <router-link
               class="nav-link d-flex align-items-center me-2 active"
               aria-current="page"
-              to="/dashboard-default"
+              to="/report-dashboard"
             >
               <i
                 class="fa fa-chart-pie opacity-6 me-1"

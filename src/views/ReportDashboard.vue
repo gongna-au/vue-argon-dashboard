@@ -128,7 +128,7 @@ import Carousel from "./components/Carousel.vue";
 
 
 export default {
-  name: "dashboard-default",
+  name: "report-dashboard",
   data() {
     return {
       selectedDate: new Date().toISOString().substr(0, 10), // 默认今天的日期，你可以根据需要调整为最近一周的逻辑

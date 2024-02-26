@@ -7,14 +7,24 @@
           Manager PAGES
         </h6>
       </li>
-
+      
       <li class="nav-item">
-        <sidenav-item url="dashboard-default" :class="getRoute() === 'dashboard-default' ? 'active' : ''" :navText="'Report'">
+        <sidenav-item url="report-dashboard" :class="getRoute() === 'report-dashboard' ? 'active' : ''" :navText="'Report Dashboard'">
           <template v-slot:icon>
             <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
           </template>
         </sidenav-item>
       </li>
+
+      <li class="nav-item">
+        <sidenav-item url="license-plate-recognition" :class="getRoute() === 'license-plate-recognition' ? 'active' : ''" :navText="'Plate Recognition'">
+          <template v-slot:icon>
+            <!-- 使用 FontAwesome 的汽车图标 -->
+            <i class="fas fa-car text-primary text-sm opacity-10"></i>
+          </template>
+        </sidenav-item>
+      </li>
+
 
       <li class="mt-3 nav-item">
         <h6 class="text-xs ps-4 text-uppercase font-weight-bolder opacity-6 me-4'">
@@ -30,7 +40,7 @@
       </li>
 
       <li class="nav-item">
-        <sidenav-item url="/real-time-parking" :class="getRoute() === 'real-time-parking' ? 'active' : ''" :navText="'Real-time Parking'">
+        <sidenav-item url="/real-time-parking" :class="getRoute() === 'real-time-parking' ? 'active' : ''" :navText="'Real-Time Parking'">
           <template v-slot:icon>
             <i class="ni ni-pin-3 text-success text-sm opacity-10"></i>
           </template>
@@ -69,28 +79,6 @@
         >
           <template v-slot:icon>
             <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
-          </template>
-        </sidenav-item>
-      </li>
-      <li class="nav-item">
-        <sidenav-item
-          url="/signin"
-          :class="getRoute() === 'signin' ? 'active' : ''"
-          :navText="this.$store.state.isRTL ? 'تسجيل الدخول' : 'Sign In'"
-        >
-          <template v-slot:icon>
-            <i class="ni ni-single-copy-04 text-danger text-sm opacity-10"></i>
-          </template>
-        </sidenav-item>
-      </li>
-      <li class="nav-item">
-        <sidenav-item
-          url="/signup"
-          :class="getRoute() === 'signup' ? 'active' : ''"
-          :navText="this.$store.state.isRTL ? 'اشتراك' : 'Sign Up'"
-        >
-          <template v-slot:icon>
-            <i class="ni ni-collection text-info text-sm opacity-10"></i>
           </template>
         </sidenav-item>
       </li>
