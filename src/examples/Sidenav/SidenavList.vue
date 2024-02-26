@@ -1,6 +1,13 @@
 <template>
   <div class="collapse navbar-collapse w-auto h-auto h-100" id="sidenav-collapse-main">
     <ul class="navbar-nav">
+
+      <li class="mt-3 nav-item">
+        <h6 class="text-xs ps-4 text-uppercase font-weight-bolder opacity-6 me-4'">
+          Manager PAGES
+        </h6>
+      </li>
+
       <li class="nav-item">
         <sidenav-item url="dashboard-default" :class="getRoute() === 'dashboard-default' ? 'active' : ''" :navText="'Dashboard'">
           <template v-slot:icon>
@@ -8,7 +15,12 @@
           </template>
         </sidenav-item>
       </li>
-      
+
+      <li class="mt-3 nav-item">
+        <h6 class="text-xs ps-4 text-uppercase font-weight-bolder opacity-6 me-4'">
+          User PAGES
+        </h6>
+      </li>
       <li class="nav-item">
         <sidenav-item url="/find-parking" :class="getRoute() === 'find-parking' ? 'active' : ''" :navText="'Find Parking'">
           <template v-slot:icon>
@@ -34,21 +46,9 @@
       </li>
       
       <li class="nav-item">
-        <sidenav-item
-          url="/billing"
-          :class="getRoute() === 'billing' ? 'active' : ''"
-          :navText="'Billing'"
-        >
+        <sidenav-item url="/billing" :class="getRoute() === 'billing' ? 'active' : ''" :navText="'Billing'">
           <template v-slot:icon>
             <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
-          </template>
-        </sidenav-item>
-      </li>
-
-      <li class="nav-item">
-        <sidenav-item url="/cost-calculator" :class="getRoute() === 'cost-calculator' ? 'active' : ''" :navText="'Cost Calculator'">
-          <template v-slot:icon>
-            <i class="ni ni-money-coins text-warning text-sm opacity-10"></i>
           </template>
         </sidenav-item>
       </li>
@@ -61,47 +61,6 @@
         </sidenav-item>
       </li>
 
-      
-      <li class="nav-item">
-        <sidenav-item
-          url="/virtual-reality"
-          :class="getRoute() === 'virtual-reality' ? 'active' : ''"
-          :navText="
-            this.$store.state.isRTL ? 'الواقع الافتراضي' : 'Virtual Reality'
-          "
-        >
-          <template v-slot:icon>
-            <i class="ni ni-app text-info text-sm opacity-10"></i>
-          </template>
-        </sidenav-item>
-      </li>
-      <li class="nav-item">
-        <sidenav-item
-          url="/rtl-page"
-          :class="getRoute() === 'rtl-page' ? 'active' : ''"
-          navText="RTL"
-        >
-          <template v-slot:icon>
-            <i class="ni ni-world-2 text-danger text-sm opacity-10"></i>
-          </template>
-        </sidenav-item>
-      </li>
-      <li class="mt-3 nav-item">
-        <h6
-          v-if="this.$store.state.isRTL"
-          class="text-xs ps-4 text-uppercase font-weight-bolder opacity-6"
-          :class="this.$store.state.isRTL ? 'me-4' : 'ms-2'"
-        >
-          صفحات المرافق
-        </h6>
-        <h6
-          v-else
-          class="text-xs ps-4 text-uppercase font-weight-bolder opacity-6"
-          :class="this.$store.state.isRTL ? 'me-4' : 'ms-2'"
-        >
-          ACCOUNT PAGES
-        </h6>
-      </li>
       <li class="nav-item">
         <sidenav-item
           url="/profile"

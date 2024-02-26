@@ -33,7 +33,7 @@ export default {
     },
     detail2: {
       type: String,
-      default: "in 2021",
+      default: "in 2023",
     },
   },
 
