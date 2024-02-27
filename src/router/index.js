@@ -12,6 +12,7 @@ import NavigationPage from "../views/NavigationPage.vue";
 import MapWithOpenRouteService from "../views/MapWithOpenRouteService.vue";
 import RealTimeParking from "../views/RealTimeParking.vue";
 import LicensePlateRecognition from "../views/LicensePlateRecognition.vue";
+import FAQ from '../views/FAQ.vue'
 
 const routes = [
   {
@@ -88,6 +89,13 @@ const routes = [
     component: LicensePlateRecognition,
     props: true, // 确保已经设置
   },
+  {
+    path: '/faq',
+    name: 'FAQ',
+    component:FAQ,
+    props: true, // 确保已经设置
+  },
+
 ];
 
 const router = createRouter({

@@ -31,6 +31,23 @@
           User PAGES
         </h6>
       </li>
+
+      <li class="nav-item">
+        <sidenav-item url="/profile" :class="getRoute() === 'profile' ? 'active' : ''" :navText="'Profile'">
+          <template v-slot:icon>
+            <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
+          </template>
+        </sidenav-item>
+      </li>
+            
+      <li class="nav-item">
+        <sidenav-item url="/billing" :class="getRoute() === 'billing' ? 'active' : ''" :navText="'Billing'">
+          <template v-slot:icon>
+            <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
+          </template>
+        </sidenav-item>
+      </li>
+
       <li class="nav-item">
         <sidenav-item url="/find-parking" :class="getRoute() === 'find-parking' ? 'active' : ''" :navText="'Find Parking'">
           <template v-slot:icon>
@@ -54,34 +71,15 @@
           </template>
         </sidenav-item>
       </li>
-      
-      <li class="nav-item">
-        <sidenav-item url="/billing" :class="getRoute() === 'billing' ? 'active' : ''" :navText="'Billing'">
-          <template v-slot:icon>
-            <i class="ni ni-credit-card text-success text-sm opacity-10"></i>
-          </template>
-        </sidenav-item>
-      </li>
 
       <li class="nav-item">
-        <sidenav-item url="/feedback" :class="getRoute() === 'feedback' ? 'active' : ''" :navText="'Feedback'">
+        <sidenav-item url="/faq" :class="getRoute() === 'faq' ? 'active' : ''" :navText="'FAQ'">
           <template v-slot:icon>
             <i class="ni ni-send text-danger text-sm opacity-10"></i>
           </template>
         </sidenav-item>
       </li>
 
-      <li class="nav-item">
-        <sidenav-item
-          url="/profile"
-          :class="getRoute() === 'profile' ? 'active' : ''"
-          :navText="this.$store.state.isRTL ? 'حساب تعريفي' : 'Profile'"
-        >
-          <template v-slot:icon>
-            <i class="ni ni-single-02 text-dark text-sm opacity-10"></i>
-          </template>
-        </sidenav-item>
-      </li>
     </ul>
   </div>
   <div class="pt-3 mx-3 mt-3 sidenav-footer">
