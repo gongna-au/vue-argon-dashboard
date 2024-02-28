@@ -7,11 +7,6 @@
       <ul class="list-group">
         <!-- 你可以根据需要添加预定信息 -->
         <li class="list-group-item border-0 d-flex p-4 mb-2 bg-gray-100 border-radius-lg">
-          <div class="d-flex flex-column">
-            <h6 class="mb-3 text-sm">Parking Lot Name</h6>
-            <span class="mb-2 text-xs">Address: <span class="text-dark font-weight-bold ms-sm-2">Your Address Here</span></span>
-            <!-- 更多信息 -->
-          </div>
           <!-- 操作按钮，如取消预定等 -->
           <div class="d-flex flex-column mb-3">
               <label for="reservation-date" class="form-label">选择预定日期:</label>
@@ -91,7 +86,7 @@ export default {
       // 这里应该是发送请求到后端的函数
       const response = await this.makeReserveRequest();
       if (response === 'OK') {
-        alert('支付成功！');
+        alert('预定成功！');
         // 清除或重置表单
         //this.resetForm();
         this.$emit('cancel-reservation');

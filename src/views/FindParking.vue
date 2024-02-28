@@ -60,14 +60,6 @@ export default {
       // 切换当前点击的停车场的预定卡片显示状态
       parking.showReservationCard = !parking.showReservationCard;
     },
-    reserveParking(parking) {
-    // 在实际应用中，这里可以是打开一个预定模态窗口的逻辑，
-    // 或者使用Vue Router导航到一个预定页面，并传递所选停车场的信息
-    alert(`预定停车场: ${parking.name}`);
-    
-    // 例如，使用Vue Router导航
-    // this.$router.push({ name: 'ReserveParkingPage', params: { parkingId: parking.id }});
-    },
     getUserLocation() {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -86,6 +78,7 @@ export default {
       const cachedParkingList = localStorage.getItem('parkingList');
       if (cachedParkingList) {
         this.parkingList = JSON.parse(cachedParkingList);
+        this.parkingList.forEach(parking => parking.showReservationCard = false); // 确保每个停车场对象都有这个属性
         return; // 如果有缓存，则直接使用，不再发起请求
       }
       const url = 'http://localhost:8083/api/v1/parking/search';
@@ -116,7 +109,7 @@ export default {
       // 实现导航逻辑，例如跳转到导航页面，并传递必要的停车场信息
       //console.log('开始导航到', parking.name);
       // 这里可以根据您的应用逻辑进行调整
-      this.$router.push({ 
+      this.$router.push({
         name: 'NavigationPage', 
         params: { 
           pname: parking.name,
@@ -126,8 +119,6 @@ export default {
           plongitude: parking.longitude
         } 
       });
-
-      //this.$router.push({ name: 'NavigationPage', params: { pname: parking.name ,paddress :parking.address, pdistance: parking.distance,platitude: parking.latitude, plongitude:parking.longitude} });
     },
   }
 };
