@@ -33,11 +33,15 @@
                 </option>
              </select>            
           </div>
-            <div class="mb-3">
-              <label for="password" class="form-label">输入密码:</label>
+             <div class="mb-3">
+              <label for="password" class="form-label">输入银行卡密码:</label>
               <input type="password" id="password" v-model="password" class="form-control">
             </div>
-            <button class="btn btn-success" @click="submitPayment">支付</button>
+            <div class="mb-3">
+              <label for="password" class="form-label">输入车牌号:</label>
+              <input type="password" id=" vehicle_number" v-model="vehicle_number" class="form-control">
+            </div>
+            <button class="btn btn-success" @click="submitReserve">预定</button>
             <button class="btn btn-danger" @click="cancelPayment">取消</button>
           </div>
         </div>
@@ -57,6 +61,7 @@ export default {
       showPaymentCard: false,
       selectedBankCard: '',
       password: '',
+      vehicle_number :'',
       bankCards: [], // 用于存储从后端获取的银行卡信息
     };
   },
@@ -82,9 +87,9 @@ export default {
     cancelPayment(){
       this.$emit('cancel-reservation');
     },
-    async submitPayment() {
+    async submitReserve() {
       // 这里应该是发送请求到后端的函数
-      const response = await this.makePaymentRequest();
+      const response = await this.makeReserveRequest();
       if (response === 'OK') {
         alert('支付成功！');
         // 清除或重置表单
@@ -94,8 +99,8 @@ export default {
         alert('支付失败，请重试。');
       }
     },
-    makePaymentRequest() {
-      // 模拟后端支付请求
+    makeReserveRequest() {
+      // 模拟后端预定请求
       console.log("Paying with", this.selectedBankCard, "and password", this.password);
       return new Promise(resolve => setTimeout(() => resolve('OK'), 1000));
     },
@@ -103,6 +108,7 @@ export default {
       this.showPaymentCard = false;
       this.selectedBankCard = '';
       this.password = '';
+      this.vehicle_number='';
     }
   }
 };

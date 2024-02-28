@@ -82,6 +82,12 @@ export default {
       }
     },
     async fetchParkingSpots() {
+       // 检查是否有缓存的停车场信息
+      const cachedParkingList = localStorage.getItem('parkingList');
+      if (cachedParkingList) {
+        this.parkingList = JSON.parse(cachedParkingList);
+        return; // 如果有缓存，则直接使用，不再发起请求
+      }
       const url = 'http://localhost:8083/api/v1/parking/search';
       try {
         //alert("Latitude: " + this.latitude + "\nLongitude: " + this.longitude);
