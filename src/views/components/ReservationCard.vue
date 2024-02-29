@@ -3,6 +3,7 @@
     <div class="card-header pb-0 px-3">
       <h6 class="mb-0">Reservation Information 预定信息</h6>
     </div>
+
     <div class="card-body pt-4 p-3">
       <ul class="list-group">
         <!-- 你可以根据需要添加预定信息 -->
@@ -26,8 +27,9 @@
                 <option v-for="(card, index) in bankCards" :key="index" :value="card">
                   **** **** **** {{ card.slice(-4) }}
                 </option>
-             </select>            
-          </div>
+              </select>            
+            </div>
+            
              <div class="mb-3">
               <label for="password" class="form-label">输入银行卡密码:</label>
               <input type="password" id="password" v-model="password" class="form-control">

@@ -1,9 +1,6 @@
 <template>
   <div class="container-fluid py-4">
     <!-- 搜索框 -->
-    <div class="mb-4">
-      <input type="text" class="form-control" placeholder="搜索附近的停车场..." v-model="searchQuery" @input="fetchParkingSpots">
-    </div>
     <!-- 停车场信息展示卡片 -->
     <div class="card">
       <div class="card-header pb-0 px-3">
@@ -41,7 +38,6 @@ export default {
   name: "find-parking",
   data() {
     return {
-      searchQuery: '',
       parkingList: [],
       latitude: null,
       longitude: null,
