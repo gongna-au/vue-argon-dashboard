@@ -14,7 +14,7 @@
           <div class="d-flex">
             <div :class="this.$store.state.isRTL ? 'ms-4' : 'me-4'">
               <p class="text-white text-sm opacity-8 mb-0">{{ cardHolderText }}</p>
-              <h6 class="text-white mb-0">{{ name }}</h6>
+              <h6 class="text-white mb-0">{{ UserName }}</h6>
             </div>
             <div>
               <p class="text-white text-sm opacity-8 mb-0">{{ cardExpirationText }}</p>
@@ -48,10 +48,6 @@ export default {
       type: String,
       default: "Card Holder",
     },
-    name: {
-      type: String,
-      default: "Jack Peterson",
-    },
     cardExpirationText: {
       type: String,
       default: "Expires",
@@ -61,7 +57,29 @@ export default {
     return {
       img,
       img1,
+      UserName :"",
     };
+  },
+  async created() {
+    if ( this.$store.state.userId) {
+       await this.fetchUserName( this.$store.state.userId);
+    }
+  },
+  methods: {
+    async fetchUserName(userId) {
+      try {
+        const response = await fetch(`http://localhost:8083/api/v1/user/name?userId=${userId}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const res = await response.json();
+        this.UserName = res.data; // 假设后端返回的数据结构中包含用户的名字在name字段中
+      } catch (error) {
+        console.error("Failed to fetch user name:", error);
+        // 处理错误情况，例如回退到默认名字或者显示错误信息
+        this.name = "Unknown"; // 或者保持原有的默认名字，或者设为其他错误提示
+      }
+    },
   },
 };
 </script>

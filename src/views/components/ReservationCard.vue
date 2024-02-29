@@ -20,21 +20,6 @@
         <div class="card">
           <div class="card-body">
             <div class="mb-3">
-              <label for="bank-card" class="form-label">选择银行卡:</label>
-              <select id="bank-card" v-model="selectedBankCard" class="form-select">
-                <option value="" disabled>请选择银行卡</option>
-                <!-- 动态生成银行卡选项 -->
-                <option v-for="(card, index) in bankCards" :key="index" :value="card">
-                  **** **** **** {{ card.slice(-4) }}
-                </option>
-              </select>            
-            </div>
-            
-             <div class="mb-3">
-              <label for="password" class="form-label">输入银行卡密码:</label>
-              <input type="password" id="password" v-model="password" class="form-control">
-            </div>
-            <div class="mb-3">
               <label for="password" class="form-label">输入车牌号:</label>
               <input type="password" id=" vehicle_number" v-model="vehicle_number" class="form-control">
             </div>

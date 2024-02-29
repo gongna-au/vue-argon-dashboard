@@ -43,84 +43,75 @@
       <div class="row">
         <div class="col-md-12">
           <div class="card">
-            <div class="card-header pb-0">
-              <div class="d-flex align-items-center">
-                <p class="mb-0">Edit Profile</p>
-                <argon-button color="success" size="sm" class="ms-auto"
-                  >Settings</argon-button
-                >
-              </div>
-            </div>
             <div class="card-body">
               <p class="text-uppercase text-sm">User Information</p>
               <div class="row">
-                <div class="col-md-6">
-                  <label for="example-text-input" class="form-control-label"
-                    >Username</label
-                  >
-                  <argon-input type="text" value="Sayo Kravits" />
+                 <!-- Example for editable Username -->
+                 <div class="col-md-6">
+                  <label for="username" class="form-control-label">Username</label>
+                  <input type="text" class="form-control" id="username" v-model="profile.name" />
                 </div>
+
                 <div class="col-md-6">
-                  <label for="example-text-input" class="form-control-label"
-                    >Phone Number</label
-                  >
-                  <argon-input type="tel" value="15102768544" />
+                  <label for="username" class="form-control-label">Phone Number</label>
+                  <input type="tel" class="form-control" id="username" v-model="profile.phone" />
                 </div>
+
                 <div class="col-md-6">
-                  <label for="example-text-input" class="form-control-label"
-                    >Email</label
-                  >
-                  <input class="form-control" type="text" value="sayokravits@gmail" />
+                  <label for="username" class="form-control-label">Email</label>
+                  <input type="text" class="form-control" id="username" v-model="profile.email" />
                 </div>
-                <div class="col-md-6">
-                  <label for="example-text-input" class="form-control-label"
-                    >Password</label
-                  >
-                  <argon-input type="text" value="***********" />
-                </div>
+
+                
+
               </div>
               <hr class="horizontal dark" />
               <p class="text-uppercase text-sm">Contact Information</p>
               <div class="row">
+                
                 <div class="col-md-12">
-                  <label for="example-text-input" class="form-control-label"
-                    >Address</label
-                  >
-                  <argon-input
-                    type="text"
-                    value="Bld Mihail Kogalniceanu, nr. 8 Bl 1, Sc 1, Ap 09"
-                  />
+                  <label for="username" class="form-control-label">Address</label>
+                  <input type="text" class="form-control" id="username" v-model="profile.address" />
                 </div>
-                <div class="col-md-4">
-                  <label for="example-text-input" class="form-control-label"
-                    >City</label
-                  >
-                  <argon-input type="text" value="New York" />
+
+                <div class="col-md-12">
+                  <label for="username" class="form-control-label">City</label>
+                  <input type="text" class="form-control" id="username" v-model="profile.city" />
                 </div>
-                <div class="col-md-4">
-                  <label for="example-text-input" class="form-control-label"
-                    >Country</label
-                  >
-                  <argon-input type="text" value="United States" />
+
+                <div class="col-md-12">
+                  <label for="username" class="form-control-label">Country</label>
+                  <input type="text" class="form-control" id="username" v-model="profile.country" />
                 </div>
-                <div class="col-md-4">
-                  <label for="example-text-input" class="form-control-label"
-                    >Postal code</label
-                  >
-                  <argon-input type="text" value="437300" />
+
+                <div class="col-md-12">
+                  <label for="username" class="form-control-label">Postal Code</label>
+                  <input type="text" class="form-control" id="username" v-model="profile.postal_code" />
                 </div>
+
               </div>
               <hr class="horizontal dark" />
               <p class="text-uppercase text-sm">About me</p>
               <div class="row">
                 <div class="col-md-12">
-                  <label for="example-text-input" class="form-control-label"
-                    >About me</label
-                  >
-                  <argon-input
-                    type="text"
-                    value="A beautiful Dashboard for Bootstrap 5. It is Free and Open Source."
-                  />
+                  <label for="username" class="form-control-label">About Me</label>
+                  <input type="text" class="form-control" id="username" v-model="profile.about_me" />
+                </div>
+              </div>
+
+              <hr class="horizontal dark" />
+              <p class="text-uppercase text-sm">Security and privacy</p>
+              <div class="row"> 
+                <div class="col-md-6">
+                  <label for="username" class="form-control-label">Old Password</label>
+                  <input type="text" class="form-control" id="old_password" v-model="old_password" />
+                </div>
+                <div class="col-md-6">
+                  <label for="username" class="form-control-label">New Password</label>
+                  <input type="text" class="form-control" id="new_password" v-model="new_password" />
+                </div>
+                <div class="card-footer text-center d-flex justify-content-center">
+                  <argon-button color="success" @click="resetPassword()">Update Password</argon-button>
                 </div>
               </div>
             </div>
@@ -129,6 +120,7 @@
         <div class="col-md-4">
           <profile-card />
         </div>
+        
       </div>
     </div>
   </main>
@@ -138,48 +130,91 @@
 import setNavPills from "@/assets/js/nav-pills.js";
 import setTooltip from "@/assets/js/tooltip.js";
 import ProfileCard from "./components/ProfileCard.vue";
-import ArgonInput from "@/components/ArgonInput.vue";
 import ArgonButton from "@/components/ArgonButton.vue";
-
-const body = document.getElementsByTagName("body")[0];
 
 export default {
   name: "profile",
+  components: { ProfileCard,  ArgonButton },
   data() {
     return {
-      showMenu: false
+      old_password:'',
+      new_password:'',
+      profile: {
+        name: '',
+        phoneNumber: '',
+        email: '',
+        address: '',
+        city: '',
+        country: '',
+        postalCode: '',
+        aboutMe: '',
+        password:"*******"
+      },
+      editMode: {
+        username: false,
+        email: false,
+        address: false,
+        // Add more fields as needed
+      },
     };
   },
-  components: { ProfileCard, ArgonInput, ArgonButton },
   methods: {
-      logout() {
-        // 清除本地存储或 Vuex 状态中的用户认证信息
-        // 例如，如果你使用 localStorage:
-        // localStorage.removeItem('userToken');
-        // 重定向到登录页面
-        this.$router.push('/signin');
-      },
+    logout() {
+      this.$router.push('/signin');
+    },
+    async fetchUserProfile() {
+      try {
+        const userId = this.$store.state.userId; // 从store获取userId
+        const response = await fetch(`http://localhost:8083/api/v1/user/profile?userId=${userId}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const res = await response.json();
+        this.profile = res.data;
+        this.profile.password='********'
+        if (!response.ok) {
+          throw new Error('Failed to update profile');
+        }
+        // Optionally, refetch the profile or handle the response
+      } catch (error) {
+        console.error("Error updating user profile:", error);
+      }
+      // Fetch user profile logic...
+    },
+    async resetPassword() {
+      try {
+        const userId = this.$store.state.userId; // 从store获取userId
+        // 构建要发送的数据对象，排除phoneNumber
+        const userData = {
+          user_id:userId,
+          old_password:this.old_password,
+          new_password:this.new_password,
+        };
+        const response = await fetch(`http://localhost:8083/api/v1/user/profile/password`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            // 如果需要，添加其他必要的头部，如认证信息
+          },
+          body: JSON.stringify(userData)
+        });
+        if (!response.ok) {
+          throw new Error('Failed to update profile');
+        }
+        // 更新成功，可以选择重新获取用户信息或直接更新视图
+        this.fetchUserProfile(); // 如果你希望重新从后端获取全部最新数据
+        alert("更新密码成功")
+
+      } catch (error) {
+        console.error("Error saving user profile:", error);
+        alert('Failed to update profile'); // 提示用户更新失败
+      }
+    },
   },
-  // mounted, beforeMount 等生命周期钩子
   mounted() {
-    this.$store.state.isAbsolute = true;
+    this.fetchUserProfile();
     setNavPills();
     setTooltip();
   },
-  beforeMount() {
-    this.$store.state.imageLayout = "profile-overview";
-    this.$store.state.showNavbar = false;
-    this.$store.state.showFooter = true;
-    this.$store.state.hideConfigButton = true;
-    body.classList.add("profile-overview");
-  },
-  beforeUnmount() {
-    this.$store.state.isAbsolute = false;
-    this.$store.state.imageLayout = "default";
-    this.$store.state.showNavbar = true;
-    this.$store.state.showFooter = true;
-    this.$store.state.hideConfigButton = false;
-    body.classList.remove("profile-overview");
-  }
 };
 </script>
