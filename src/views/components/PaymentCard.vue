@@ -42,8 +42,11 @@
             <img class="w-10 me-3 mb-0" src="@/assets/img/logos/mastercard.png" alt="logo" />
             <h6 class="mb-0"> ****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;{{ card.name.slice(-4) }}</h6>
             <div class="col-6 text-end">
-              <argon-button color="success" variant="gradient" @click="card.showRechargeForm = true">
+              <argon-button color="success" variant="gradient" class="me-3" @click="card.showRechargeForm = true">
                 <i class="fas fa-wallet me-2"></i>充值
+              </argon-button>
+              <argon-button color="danger" variant="gradient" @click="unbindCard(card)">
+                <i class="fas fa-unlink me-2"></i>解绑
               </argon-button>
             </div> 
           </div>
@@ -110,9 +113,18 @@ export default {
         alert("取消成功");
         card.showRechargeForm = false; // 关闭充值表单
       },
+      unbindCard(card) {
+        // 这里添加解绑银行卡的逻辑
+        // 例如，发送请求到后端API解除银行卡绑定
+        console.log("解绑银行卡", card.name);
+        // 假设解绑成功后，从cards数组中移除这张卡
+        const index = this.cards.indexOf(card);
+        if (index > -1) {
+          this.cards.splice(index, 1);
+          alert("银行卡解绑成功！");
+        }
+      },
     // 其他方法保持不变...
-
-
     async fetchCards() {
       const userId = this.$store.state.userId;
       try {
