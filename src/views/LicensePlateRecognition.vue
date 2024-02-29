@@ -46,13 +46,13 @@ export default {
             body: formData,
             // 不需要手动设置Content-Type，使用FormData时浏览器会自动处理
           });
+          
+          const data = await response.json();
           if (!response.ok) {
             throw new Error('Network response was not ok');
+          }else{
+            this.ocrResult = data.texts;
           }
-          const data = await response.json();
-          this.ocrResult = data.texts;
-          alert("OCR识别请求失败",this.ocrResult);
-          console.log("OCR识别结果:", this.ocrResult);
         } catch (error) {
           console.error("OCR请求失败:", error);
           alert("OCR识别请求异常",error);
