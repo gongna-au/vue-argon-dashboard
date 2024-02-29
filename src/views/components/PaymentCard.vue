@@ -11,7 +11,6 @@
             Add New Card
           </argon-button>
         </div>
-
         <!-- 添加银行卡的表单 -->
         <div v-if="showAddCardForm" class="mt-3">
           <div class="input-group mb-3">
@@ -33,30 +32,36 @@
             Cancel
           </argon-button>
         </div>
-      
+
       </div>
     </div>
     <div class="card-body p-3">
       <div class="row">
         <div class="col-md-6 mb-md-0 mb-4" v-for="(card, index) in cards" :key="index" >
-          <div
-            class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row"
-          >
+          <div class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
             <img class="w-10 me-3 mb-0" src="@/assets/img/logos/mastercard.png" alt="logo" />
-            <h6 class="mb-0">
-              ****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;{{ card.slice(-4) }}
-            </h6>
-            <i
-              class="fas fa-pencil-alt ms-auto text-dark cursor-pointer"
-              data-bs-toggle="tooltip"
-              data-bs-placement="top"
-              title
-              aria-hidden="true"
-              data-bs-original-title="Edit Card"
-              aria-label="Edit Card"
-            ></i>
-            <span class="sr-only">Edit Card</span>
+            <h6 class="mb-0"> ****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;{{ card.name.slice(-4) }}</h6>
+            <div class="col-6 text-end">
+              <argon-button color="success" variant="gradient" @click="card.showRechargeForm = true">
+                <i class="fas fa-wallet me-2"></i>充值
+              </argon-button>
+            </div> 
           </div>
+                <!-- 添加充值的表单 -->
+                <div v-if=card.showRechargeForm class="mt-3">
+                    <div class="input-group mb-3">
+                      <input type="text" v-model="cardPassword" placeholder="银行卡密码" class="form-control">
+                    </div>
+                    <div class="input-group mb-3">
+                      <input type="number" v-model="rechargeAmount" placeholder="充值金额" class="form-control">
+                    </div>
+                    <argon-button color="success" variant="gradient" class="me-3" @click="submitPayment(card)">
+                        支付
+                    </argon-button>
+                    <argon-button color="danger" variant="gradient" @click="cancelPayment(card)">
+                      取消
+                    </argon-button>
+                </div>
         </div>
       </div>
     </div>
@@ -77,6 +82,8 @@ export default {
     return {
       img1,
       img2,
+      cardPassword:"",
+      rechargeAmount:0,
       showAddCardForm: false, // 控制添加新卡表单的显示
       newCard: { // 新银行卡信息
         userId:0,
@@ -92,13 +99,30 @@ export default {
     await this.fetchCards();
   },
   methods: {
+      submitPayment(card) {
+        // 假设这里执行一些支付逻辑
+        // 这里只是直接显示"支付成功"，实际应用中应当在支付逻辑成功后显示
+        alert("支付成功");
+        card.showRechargeForm = false; // 关闭充值表单
+      },
+      cancelPayment(card) {
+        // 取消支付逻辑，这里只是简单地显示"取消成功"
+        alert("取消成功");
+        card.showRechargeForm = false; // 关闭充值表单
+      },
+    // 其他方法保持不变...
+
+
     async fetchCards() {
       const userId = this.$store.state.userId;
       try {
         const response = await fetch(`http://localhost:8083/api/v1/user/cards?userId=${userId}`);
         const res = await response.json();
         if (res.code==200) {
-          this.cards = res.data; // 更新cards数组
+          this.cards = res.data.map(cardName => ({
+            name: cardName,
+            showRechargeForm: false
+          }));
         } else {
           alert('获取绑定的银行卡信息失败')
         }
