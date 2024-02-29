@@ -11,7 +11,7 @@
     </div>
     <!-- 显示OCR识别结果 -->
     <div v-if="ocrResult.length > 0" class="mb-3">
-      <h5>OCR识别结果：</h5>
+      <h5>车牌识别结果：</h5>
       <ul>
         <li v-for="(text, index) in ocrResult" :key="index">{{ text }}</li>
       </ul>
