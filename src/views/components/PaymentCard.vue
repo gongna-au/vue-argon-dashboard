@@ -40,7 +40,7 @@
         <div class="col-md-6 mb-md-0 mb-4" v-for="(card, index) in cards" :key="index" >
           <div class="card card-body border card-plain border-radius-lg d-flex align-items-center flex-row">
             <img class="w-10 me-3 mb-0" src="@/assets/img/logos/mastercard.png" alt="logo" />
-            <h6 class="mb-0"> ****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;{{ card.name.slice(-4) }}</h6>
+            <h6 class="mb-0"> ****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;****&nbsp;&nbsp;&nbsp;{{ card.card_number.slice(-4) }}</h6>
             <div class="col-6 text-end">
               <argon-button color="success" variant="gradient" class="me-3" @click="card.showRechargeForm = true">
                 <i class="fas fa-wallet me-2"></i>充值
@@ -53,10 +53,10 @@
                 <!-- 添加充值的表单 -->
                 <div v-if=card.showRechargeForm class="mt-3">
                     <div class="input-group mb-3">
-                      <input type="text" v-model="cardPassword" placeholder="银行卡密码" class="form-control">
+                      <input type="text" v-model="chargeDetails.password" placeholder="银行卡密码" class="form-control">
                     </div>
                     <div class="input-group mb-3">
-                      <input type="number" v-model="rechargeAmount" placeholder="充值金额" class="form-control">
+                      <input type="number" v-model="chargeDetails.recharge_amount" placeholder="充值金额" class="form-control">
                     </div>
                     <argon-button color="success" variant="gradient" class="me-3" @click="submitPayment(card)">
                         支付
@@ -85,8 +85,12 @@ export default {
     return {
       img1,
       img2,
-      cardPassword:"",
-      rechargeAmount:0,
+      chargeDetails: {
+        user_id:'',
+        card_number:'',
+        password: '', // 银行卡密码
+        recharge_amount: 0, // 充值金额
+      },
       showAddCardForm: false, // 控制添加新卡表单的显示
       newCard: { // 新银行卡信息
         userId:0,
@@ -102,11 +106,33 @@ export default {
     await this.fetchCards();
   },
   methods: {
-      submitPayment(card) {
+      async submitPayment(card) {
+        card.showRechargeForm = false; // 关闭充值表单
         // 假设这里执行一些支付逻辑
         // 这里只是直接显示"支付成功"，实际应用中应当在支付逻辑成功后显示
-        alert("支付成功");
-        card.showRechargeForm = false; // 关闭充值表单
+        try {
+          this.chargeDetails.user_id=this.$store.state.userId;
+          this.chargeDetails.card_number = card.card_number
+          const apiUrl = 'http://localhost:8083/api/v1/user/recharge';
+          const response = await fetch(apiUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json; charset=utf-8',
+              'Accept': 'application/json, application/geo+json, application/gpx+xml, img/png; charset=utf-8',
+            },
+            body: JSON.stringify(this.chargeDetails)
+          });
+          const res = await response.json();
+          if (!response.ok) {
+            alert("充值失败",res.message)
+          }else{
+            alert('res.data'+res.data)
+            this.$emit('recharge-success', `$`+res.data);
+            alert('充值成功',res.message)
+          }
+        } catch (error) {
+          alert(`Error fetching directions: ${error}`); // Alert the error
+        }
       },
       cancelPayment(card) {
         // 取消支付逻辑，这里只是简单地显示"取消成功"
@@ -132,7 +158,7 @@ export default {
         const res = await response.json();
         if (res.code==200) {
           this.cards = res.data.map(cardName => ({
-            name: cardName,
+            card_number: cardName,
             showRechargeForm: false
           }));
         } else {

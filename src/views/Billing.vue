@@ -27,7 +27,7 @@
             </div>
           </div>
           <div class="col-md-12 mb-4">
-            <payment-card />
+            <payment-card @recharge-success="handleRechargeSuccess" />
           </div>
         </div>
       </div>
@@ -62,6 +62,9 @@ export default {
     BillingCard,
     TransactionCard,
   },
+  mounted() {
+    this.fetchAccountBalance(); // 组件加载时获取账户余额
+  },
   data() {
     return {
       salary: {
@@ -78,5 +81,26 @@ export default {
       },
     };
   },
+  methods: {
+    handleRechargeSuccess(updatedBalance) {
+      // 使用事件传递的新余额更新数据
+      this.salary.price = `$${updatedBalance}`;
+    },
+    async fetchAccountBalance() {
+      const userId = this.$store.state.userId;
+      try {
+        const response = await fetch(`http://localhost:8083/api/v1/user/overage?userId=${userId}`);
+        const res = await response.json();
+        if (response.ok) {
+          // 假设后端返回的数据中有一个字段叫 balance 表示余额
+          this.salary.price = `$`+res.data
+        } else {
+          console.error('获取账户余额失败:', res.message);
+        }
+      } catch (error) {
+        console.error('请求账户余额时发生错误:', error);
+      }
+    },
+  }
 };
 </script>
