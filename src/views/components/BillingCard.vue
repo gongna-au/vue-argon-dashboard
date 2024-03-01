@@ -18,12 +18,6 @@
               Standard Charge: <span class="text-dark ms-sm-2 font-weight-bold">{{ reserve.parking_lot_charge }}</span>
             </span>
             <span class="mb-2 text-xs">
-              Bank Card Number: <span class="text-dark ms-sm-2 font-weight-bold">{{ reserve.bank_card_number }}</span>
-            </span>
-            <span class="mb-2 text-xs">
-              Payment Amount: <span class="text-dark ms-sm-2 font-weight-bold">{{ reserve.payment_amount }}</span>
-            </span>
-            <span class="mb-2 text-xs">
               Reservation Start: <span class="text-dark ms-sm-2 font-weight-bold">{{ reserve.start_time }}</span>
             </span>
             <span class="mb-2 text-xs">
