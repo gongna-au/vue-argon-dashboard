@@ -71,20 +71,20 @@ export default {
         classIcon: "text-white fas fa-landmark",
         title: "Overage",
         desc: "账户余额",
-        price: "$2000.00",
+        price: "2000.00",
       },
       paypal: {
         classIcon: "text-white fab fa-paypal",
         title: "Expenses",
         desc: "所有支出",
-        price: "$455.00",
+        price: "455.00",
       },
     };
   },
   methods: {
     handleRechargeSuccess(updatedBalance) {
       // 使用事件传递的新余额更新数据
-      this.salary.price = `$${updatedBalance}`;
+      this.salary.price = `${updatedBalance}`;
     },
     async fetchAccountBalance() {
       const userId = this.$store.state.userId;
@@ -93,9 +93,10 @@ export default {
         const res = await response.json();
         if (response.ok) {
           // 假设后端返回的数据中有一个字段叫 balance 表示余额
-          this.salary.price = `$`+res.data
+          this.salary.price = res.data.overage
+          this.paypal.price= res.data.expenses
         } else {
-          console.error('获取账户余额失败:', res.message);
+          console.error('获取账户余额和支出失败:', res.message);
         }
       } catch (error) {
         console.error('请求账户余额时发生错误:', error);

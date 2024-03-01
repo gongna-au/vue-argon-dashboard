@@ -126,8 +126,7 @@ export default {
           if (!response.ok) {
             alert("充值失败",res.message)
           }else{
-            alert('res.data'+res.data)
-            this.$emit('recharge-success', `$`+res.data);
+            this.$emit('recharge-success',res.data);
             alert('充值成功',res.message)
           }
         } catch (error) {
