@@ -19,7 +19,7 @@
             <div class="d-flex flex-column justify-content-between">
               <button @click="navigateTo(parking)" class="btn btn-primary mb-2">导航</button>
               <button @click="toggleReservationCard(parking)" class="btn btn-success">预定</button>
-              <reservation-card v-if="parking.showReservationCard" @cancel-reservation="hideReservationCard(parking)" />
+              <reservation-card v-if="parking.showReservationCard" :parkingId="parking.id" @cancel-reservation="hideReservationCard(parking)" />
             </div>
           </li>
         </ul>
@@ -33,7 +33,7 @@ import ReservationCard from "./components/ReservationCard.vue";
 
 export default {
   components: {
-    ReservationCard
+    ReservationCard,
   },
   name: "find-parking",
   data() {
@@ -55,6 +55,7 @@ export default {
     toggleReservationCard(parking) {
       // 切换当前点击的停车场的预定卡片显示状态
       parking.showReservationCard = !parking.showReservationCard;
+      this.$emit('reservation-card', parking.id);
     },
     getUserLocation() {
       if (navigator.geolocation) {
