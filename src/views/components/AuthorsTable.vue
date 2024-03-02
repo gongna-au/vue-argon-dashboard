@@ -13,6 +13,7 @@
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Parking Duration</th>
               <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Start & Time</th>
               <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">End & Time</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> PaymentAmount </th>
             </tr>
           </thead>
           <tbody>
@@ -29,7 +30,7 @@
                 </div>
               </td>
               <td>
-                <p class="text-xs font-weight-bold mb-0">{{ parking.VehicleNumber }}</p>
+                <p class="text-xs font-weight-bold mb-0 text-center ">{{ parking.VehicleNumber }}</p>
               </td>
               <td class="align-middle text-center text-sm">
                 <span class="text-secondary text-xs font-weight-bold">{{ parking.Duration }}</span>
@@ -40,6 +41,10 @@
               <td class="align-middle">
                 <span class="text-secondary text-xs font-weight-bold">{{ parking.EndTime }}</span>
               </td>
+              <td class="align-middle text-center ">
+                <span class="text-secondary text-xs font-weight-bold ms-2">{{ parking. PaymentAmount  }}</span>
+              </td>
+     
             </tr>
           </tbody>
         </table>
