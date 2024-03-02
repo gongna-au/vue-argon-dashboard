@@ -23,22 +23,22 @@
                     <img :src="'https://cdn.pixabay.com/photo/2014/04/02/10/45/parking-304465_1280.png'" class="avatar avatar-sm me-3" :alt="parking.name"/>
                   </div>
                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">{{ parking.name }}</h6>
-                    <p class="text-xs text-secondary mb-0">{{ parking.address }}</p>
+                    <h6 class="mb-0 text-sm">{{ parking.ParkingLotName }}</h6>
+                    <p class="text-xs text-secondary mb-0">{{ parking.Address}}</p>
                   </div>
                 </div>
               </td>
               <td>
-                <p class="text-xs font-weight-bold mb-0">{{ parking.vehicle_number }}</p>
+                <p class="text-xs font-weight-bold mb-0">{{ parking.VehicleNumber }}</p>
               </td>
               <td class="align-middle text-center text-sm">
-                <span class="text-secondary text-xs font-weight-bold">{{ parking.parking_duration }}</span>
+                <span class="text-secondary text-xs font-weight-bold">{{ parking.Duration }}</span>
               </td>
               <td class="align-middle text-center">
-                <span class="text-secondary text-xs font-weight-bold">{{ parking.start_time }}</span>
+                <span class="text-secondary text-xs font-weight-bold">{{ parking.StartTime }}</span>
               </td>
               <td class="align-middle">
-                <span class="text-secondary text-xs font-weight-bold">{{ parking.end_time }}</span>
+                <span class="text-secondary text-xs font-weight-bold">{{ parking.EndTime }}</span>
               </td>
             </tr>
           </tbody>

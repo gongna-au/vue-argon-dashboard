@@ -159,7 +159,7 @@ export default {
         },
         cars: {
           title: "Today's Parked Cars",
-          value: "+3,462",
+          value: "3,462",
           percentage: "-2%",
           iconClass: "ni ni-paper-diploma",
           percentageColor: "text-danger",
