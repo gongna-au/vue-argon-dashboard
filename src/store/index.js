@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-
+import createPersistedState from "vuex-persistedstate";
 export default createStore({
   state: {
     userId: 0, // 添加这行
@@ -23,7 +23,7 @@ export default createStore({
     toggleConfigurator(state) {
       state.showConfig = !state.showConfig;
     },
-    setUserId(state, userId) { // 添加这个mutation
+    setUserId(state, userId) { // 已有的mutation
       state.userId = userId;
     },
     navbarMinimize(state) {
@@ -59,5 +59,10 @@ export default createStore({
       commit('setUserId', userId);
     },
   },
+  plugins: [
+    createPersistedState({
+      paths: ['userId'] // 仅持久化userId状态
+    }),
+  ],
   getters: {}
 });

@@ -33,6 +33,10 @@ npm install openrouteservice-js
 ```
 
 ```shell
+npm install --save vuex-persistedstate
+```
+
+```shell
 npm install --save leaflet-routing-machine      
 ```
 
