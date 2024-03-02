@@ -160,7 +160,9 @@ export default {
   },
   methods: {
     logout() {
-      this.$router.push('/signin');
+      this.$store.dispatch('logout').then(() => {
+        this.$router.push('/signin');
+      });
     },
     async fetchUserProfile() {
       try {

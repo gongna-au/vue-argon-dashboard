@@ -27,7 +27,6 @@
             <router-link
               :to="{ name: 'Signin' }"
               class="px-0 nav-link font-weight-bold text-white"
-              target="_blank"
             >
               <i
                 class="fa fa-user"
@@ -38,6 +37,7 @@
               >
               <span v-else class="d-sm-inline d-none">Sign Out</span>
             </router-link>
+
           </li>
           <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
             <a

@@ -20,6 +20,11 @@ export default createStore({
     layout: "default"
   },
   mutations: {
+    resetState(state) {
+      // 重置到初始状态
+      state.userId = 0;
+      // 重置其他需要在登出时清除的状态...
+    },
     toggleConfigurator(state) {
       state.showConfig = !state.showConfig;
     },
@@ -51,6 +56,10 @@ export default createStore({
     }
   },
   actions: {
+    logout({ commit }) {
+      commit('resetState'); // 调用重置状态的 mutation
+      // 这里可以添加其他登出逻辑，如清除 auth token
+    },
     toggleSidebarColor({ commit }, payload) {
       commit("sidebarType", payload);
     },
