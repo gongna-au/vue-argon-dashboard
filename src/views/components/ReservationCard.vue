@@ -104,7 +104,7 @@ export default {
           body: JSON.stringify(this.reservation)
         });
         const res = await response.json();
-        alert("res.message+"+res.message)
+        alert(res.message)
         if (res.code!=200) {
           throw new Error('预定失败'+res.message);
         }
