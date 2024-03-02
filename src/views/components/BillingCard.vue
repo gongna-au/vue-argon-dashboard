@@ -23,6 +23,9 @@
             <span class="mb-2 text-xs">
               Reservation End: <span class="text-dark ms-sm-2 font-weight-bold">{{ reserve.end_time }}</span>
             </span>
+            <span class="mb-2 text-xs">
+              Vehicle Number: <span class="text-dark ms-sm-2 font-weight-bold">{{ reserve.vehicle_number }}</span>
+            </span>
           </div>
          
           <div class="ms-auto text-end">

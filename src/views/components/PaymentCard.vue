@@ -20,7 +20,7 @@
             <input type="text" v-model="newCard.cardNumber" placeholder="Card Number" class="form-control">
           </div>
           <div class="input-group mb-3">
-            <input type="text" v-model="newCard.cardPassword" placeholder="Password" class="form-control">
+            <input type="password" v-model="newCard.cardPassword" placeholder="Password" class="form-control">
           </div>
           <div class="input-group mb-3">
             <input type="text" v-model="newCard.expiryDate" placeholder="Expiry Date (YYYY-MM-DD)" class="form-control">
@@ -99,6 +99,10 @@ export default {
         cardPassword: '',
         expiryDate: '',
       },
+      unBindRequest:{
+        user_id: "16",
+        card_number: "2222333344445556",
+      },
       cards: [],
     };
   },
@@ -138,17 +142,7 @@ export default {
         alert("取消成功");
         card.showRechargeForm = false; // 关闭充值表单
       },
-      unbindCard(card) {
-        // 这里添加解绑银行卡的逻辑
-        // 例如，发送请求到后端API解除银行卡绑定
-        console.log("解绑银行卡", card.name);
-        // 假设解绑成功后，从cards数组中移除这张卡
-        const index = this.cards.indexOf(card);
-        if (index > -1) {
-          this.cards.splice(index, 1);
-          alert("银行卡解绑成功！");
-        }
-      },
+      
     // 其他方法保持不变...
     async fetchCards() {
       const userId = this.$store.state.userId;
@@ -168,15 +162,42 @@ export default {
         console.error('Error fetching cards:', error);
       }
     },
+    async unbindCard(card) {
+      this.unBindRequest.card_number=card.card_number
+      this.unBindRequest.user_id=this.$store.state.userId
+      const index = this.cards.indexOf(card);
+      if (index > -1) {
+        try {
+          const response = await fetch("http://localhost:8083/api/v1/user/unbind", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(this.unBindRequest),
+          });
+          const res = await response.json();
+          if (res.code == 200) {
+            this.cards.splice(index, 1);
+            alert('银行卡解绑成功');
+          } else {
+            alert('解绑银行卡失败: ' + res.message);
+          }
+        } catch (error) {
+          console.error('解绑过程中发生错误:', error);
+          alert('解绑失败，请稍后再试');
+        }
+      }
+    },
     async submitNewCard() {
+      this.showAddCardForm = false
       this.newCard.userId = this.$store.state.userId; // 从全局store获取userId
       const cardData = {
-      user_id:  this.newCard.userId,
-      card_number: this.newCard.cardNumber,
-      card_password: this.newCard.cardPassword,
-      bank_name: this.newCard.bankName,
-      expiry_date: this.newCard.expiryDate,
-    };
+        user_id:  this.newCard.userId,
+        card_number: this.newCard.cardNumber,
+        card_password: this.newCard.cardPassword,
+        bank_name: this.newCard.bankName,
+        expiry_date: this.newCard.expiryDate,
+      };
       try {
         const response = await fetch("http://localhost:8083/api/v1/user/card", { // 替换为你的后端接口地址
             method: "POST",
@@ -188,7 +209,11 @@ export default {
           const res = await response.json();
           if (res.code == 200) {
             alert('绑定银行卡成功 ' + res.code);
-            this.cards.push(cardData.card_number);
+            this.cards.push(
+              {
+                card_number: res.data,
+                showRechargeForm: false
+              });
             this.showAddCardForm = false;
             // 重置表单，包括移除用户ID
             this.newCard = { bankName: '', cardNumber: '', cardPassword: '', expiryDate: '' };
@@ -200,7 +225,6 @@ export default {
         // 网络或其他错误的处理逻辑
         alert('登录过程中发生错误：' + error.message);
       }
-    
     },
   },
 };
