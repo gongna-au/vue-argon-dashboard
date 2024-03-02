@@ -53,7 +53,7 @@
                 <!-- 添加充值的表单 -->
                 <div v-if=card.showRechargeForm class="mt-3">
                     <div class="input-group mb-3">
-                      <input type="text" v-model="chargeDetails.password" placeholder="银行卡密码" class="form-control">
+                      <input type="password" v-model="chargeDetails.password" placeholder="银行卡密码" class="form-control">
                     </div>
                     <div class="input-group mb-3">
                       <input type="number" v-model="chargeDetails.recharge_amount" placeholder="充值金额" class="form-control">
