@@ -79,32 +79,32 @@
                       <td class="text-sm align-middle">
                         <div class="text-center col">
                           <p class="mb-0 text-xs font-weight-bold">Date:</p>
-                          <h6 class="mb-0 text-sm">{{ sale.date }}</h6>
+                          <h6 class="mb-0 text-sm">{{ sale.Date }}</h6>
                         </div>
                       </td>
                       <td class="text-sm align-middle">
                         <div class="text-center col">
                           <p class="mb-0 text-xs font-weight-bold">TotalRevenue:</p>
-                          <h6 class="mb-0 text-sm">{{ sale.totalRevenue }}</h6>
+                          <h6 class="mb-0 text-sm">{{ sale.TotalRevenue }}</h6>
                         </div>
                       </td>
                       <td class="text-sm align-middle">
                         <div class="text-center col">
                           <p class="mb-0 text-xs font-weight-bold">TotalParkings:</p>
-                          <h6 class="mb-0 text-sm">{{ sale.totalParkings }}</h6>
+                          <h6 class="mb-0 text-sm">{{ sale.TotalParkings }}</h6>
                         </div>
                       </td>
 
                       <td class="text-sm align-middle">
                         <div class="text-center col">
-                          <p class="mb-0 text-xs font-weight-bold">AverageParkingDuration:</p>
-                          <h6 class="mb-0 text-sm">{{ sale.averageParkingDuration }}</h6>
+                          <p class="mb-0 text-xs font-weight-bold">MinDuration:</p>
+                          <h6 class="mb-0 text-sm">{{ sale.MinDuration }}</h6>
                         </div>
                       </td>
                       <td class="text-sm align-middle">
                         <div class="text-center col">
-                          <p class="mb-0 text-xs font-weight-bold">PeakHours:</p>
-                          <h6 class="mb-0 text-sm">{{ sale.peakHours }}</h6>
+                          <p class="mb-0 text-xs font-weight-bold">MaxDuration:</p>
+                          <h6 class="mb-0 text-sm">{{ sale.MaxDuration }}</h6>
                         </div>
                       </td>
                     </tr>
@@ -168,13 +168,10 @@ export default {
         },
       },
       sales: [
-          { date: "2024-02-20", totalRevenue: "$1200", totalParkings: 300 ,averageParkingDuration: "6h",peakHours:"07:00~12:00"},
-          { date: "2024-02-19", totalRevenue: "$1100", totalParkings: 280 ,averageParkingDuration: "7h",peakHours:"07:00~12:00"},
-          { date: "2024-02-18", totalRevenue: "$1300", totalParkings: 310 ,averageParkingDuration: "8h",peakHours:"07:00~12:00"},
-          { date: "2024-02-17", totalRevenue: "$1250", totalParkings: 305 ,averageParkingDuration: "5h",peakHours:"07:00~12:00"},
-          { date: "2024-02-16", totalRevenue: "$1150", totalParkings: 290 ,averageParkingDuration: "9h",peakHours:"07:00~12:00"},
-          { date: "2024-02-15", totalRevenue: "$1050", totalParkings: 270 ,averageParkingDuration: "6h",peakHours:"07:00~12:00"},
-          { date: "2024-02-14", totalRevenue: "$1350", totalParkings: 320 ,averageParkingDuration: "3h",peakHours:"07:00~12:00"}
+          { Date: "2024-02-28", TotalRevenue: "102", TotalParkings: 300 ,MinDuration: "0 days 0 hours 45 minutes 0 seconds",MaxDuration:"1 days 0 hours 45 minutes 0 seconds"},
+          { Date: "2024-02-27", TotalRevenue: "870", TotalParkings: 764 ,MinDuration: "1 days 0 hours 45 minutes 0 seconds",MaxDuration:"1 days 0 hours 34 minutes 0 seconds"},
+          { Date: "2024-02-26", TotalRevenue: "100", TotalParkings: 50 ,MinDuration: "1 days 0 hours 45 minutes 0 seconds",MaxDuration:"1 days 5 hours 0 minutes 0 seconds"},
+          { Date: "2024-02-25", TotalRevenue: "324", TotalParkings: 453 ,MinDuration: "3 days 0 hours 45 minutes 0 seconds",MaxDuration:"1 days 2 hours 0 minutes 0 seconds"},
       ],
     };
   },
@@ -182,10 +179,14 @@ export default {
     async fetchSalesData() {
       // 调用后端API获取数据，这里是一个示例，需要根据实际API进行调整
       // 假设API URL为 '/api/sales'，并接受 'date' 作为查询参数
-      const response = await fetch(`/api/sales?date=${this.selectedDate}`);
-      const data = await response.json();
+      const response = await fetch(`http://localhost:8083/api/v1/parking/sales?endTime=${this.selectedDate}`);
+      const res = await response.json();
       // 假设返回的数据结构符合你的 'sales' 数据结构，直接赋值
-      this.sales = data;
+      this.sales = [res.data];
+      if (res.code!=200) {        
+        alert('获取停车收入失败,响应状态: ' + res.message);
+      }
+
     }
   },
   components: {
