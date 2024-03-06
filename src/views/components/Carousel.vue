@@ -11,7 +11,8 @@
             <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
               <i class="ni ni-camera-compact text-dark opacity-10"></i>
             </div>
-            <p>There’s nothing I really wanted to do in life that I wasn’t able to get good at.</p>
+            <h5 class="text-white mb-1"> 智能预约，一键扣款</h5>
+            <p>🚗 欢迎来到停车场！我们的智能停车系统通过实时更新引导您到达最近的停车位，让您的到达就像您开车一样顺利。</p>
           </div>
         </div>
         <div
@@ -23,8 +24,8 @@
             <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
               <i class="ni ni-bulb-61 text-dark opacity-10"></i>
             </div>
-            <h5 class="text-white mb-1">Faster way to create web pages</h5>
-            <p>That’s my skill. I’m not really specifically talented at anything except for the ability to learn.</p>
+            <h5 class="text-white mb-1">最大程度的安全!</h5>
+            <p>🔒 智能停车系统配备 24小时即时监控和即时通知，可确保最大程度的安全性和安心。</p>
           </div>
         </div>
         <div
@@ -36,8 +37,8 @@
             <div class="icon icon-shape icon-sm bg-white text-center border-radius-md mb-3">
               <i class="ni ni-trophy text-dark opacity-10"></i>
             </div>
-            <h5 class="text-white mb-1">Share with us your design tips!</h5>
-            <p>Don’t be afraid to be wrong because you can’t learn anything from a compliment.</p>
+            <h5 class="text-white mb-1">停车更聪明，而不是更难！</h5>
+            <p>📱 可提前预订停车位，并享受为您的便利度身定制的无缝停车体验。</p>
           </div>
         </div>
       </div>
