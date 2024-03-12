@@ -131,7 +131,7 @@ export default {
             alert("充值失败",res.message)
           }else{
             this.$emit('recharge-success',res.data);
-            alert('充值成功',res.message)
+            //alert('充值成功',res.message)
           }
         } catch (error) {
           alert(`Error fetching directions: ${error}`); // Alert the error
@@ -139,7 +139,7 @@ export default {
       },
       cancelPayment(card) {
         // 取消支付逻辑，这里只是简单地显示"取消成功"
-        alert("取消成功");
+        //alert("取消成功");
         card.showRechargeForm = false; // 关闭充值表单
       },
       

@@ -108,7 +108,7 @@ export default {
           throw new Error('预定失败'+res.message);
         }
         // 更新成功，可以选择重新获取用户信息或直接更新视图
-        alert("预定成功")
+         alert("预定成功")
       } catch (error) {
         console.error("Error saving user profile:", error);
         alert('预定失败'); // 提示用户更新失败

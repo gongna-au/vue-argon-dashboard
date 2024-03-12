@@ -116,7 +116,7 @@ export default {
         const res = await response.json();
         if (res.code==200) {
           this.$store.dispatch('updateUserId', res.data.userId); // 假设后端返回的数据中包含userId
-          alert("登录成功！UserID"+this.$store.state.userId)
+          alert("登录成功")
           // 登录成功的处理逻辑，比如跳转到主页或显示成功消息
           // 例如，跳转到主页
           this.$router.push('/profile');

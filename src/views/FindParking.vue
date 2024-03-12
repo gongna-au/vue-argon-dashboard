@@ -17,7 +17,7 @@
               <span class="text-xs">距离: <span class="text-dark ms-sm-2 font-weight-bold">{{ parking.distance.toFixed(2) }} km</span></span>
             </div>
             <div class="d-flex flex-column justify-content-between">
-              <button @click="navigateTo(parking)" class="btn btn-primary mb-2">导航</button>
+              <button @click="navigateToUrl('https://maps.openrouteservice.org/#/directions/Residual%20Road,Kootenai%20County,ID,USA/North%20Latah%20Street,Rathdrum,ID,USA/data/55,130,32,198,15,97,4,224,38,9,96,59,2,24,5,192,166,6,113,0,184,64,90,1,25,8,13,128,58,1,216,5,96,25,130,146,0,224,19,128,38,0,25,152,96,22,42,1,162,226,153,6,36,104,50,162,196,91,46,36,168,146,96,27,136,169,50,76,217,177,162,66,133,13,13,73,113,111,208,110,194,53,9,173,33,45,67,16,188,64,64,0,234,158,4,68,216,114,128,5,229,0,45,174,66,6,65,237,160,32,0,205,224,0,109,209,112,64,66,161,81,240,1,221,145,194,1,172,144,1,204,109,3,161,208,67,208,115,16,192,162,240,115,33,189,189,209,17,97,209,96,64,1,124,234,128')"  class="btn btn-primary mb-2">导航</button>
               <button @click="toggleReservationCard(parking)" class="btn btn-success">预定</button>
               <reservation-card v-if="parking.showReservationCard" :parkingId="parking.id" @cancel-reservation="hideReservationCard(parking)" />
             </div>
@@ -48,6 +48,9 @@ export default {
     this.getUserLocation();
   },
   methods: {
+    navigateToUrl(url) {
+      window.location.href = url; // 设置目标URL，实现跳转
+    },
     hideReservationCard(parking) {
       // 隐藏预定卡片
       parking.showReservationCard = false;
