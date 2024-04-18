@@ -12,6 +12,8 @@ import MapWithOpenRouteService from "../views/MapWithOpenRouteService.vue";
 import RealTimeParking from "../views/RealTimeParking.vue";
 import LicensePlateRecognition from "../views/LicensePlateRecognition.vue";
 import FAQ from '../views/FAQ.vue'
+import Device from '../views/Device.vue'
+import ChangePay from '../views/ChangePay.vue'
 
 const routes = [
   {
@@ -89,6 +91,19 @@ const routes = [
     component:FAQ,
     props: true, // 确保已经设置
   },
+  {
+    path: '/device-dashboard',
+    name: 'Device',
+    component: Device ,
+    props: true, // 确保已经设置
+  },
+  {
+    path: '/adjust-dashboard',
+    name: 'Adjust Rates',
+    component: ChangePay ,
+    props: true, // 确保已经设置
+  },
+
 
 ];
 

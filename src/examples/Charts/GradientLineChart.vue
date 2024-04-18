@@ -25,7 +25,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: "停车位可用性预测",
+      default: "明日停车位可用性预测",
     },
     detail1: {
       type: String,

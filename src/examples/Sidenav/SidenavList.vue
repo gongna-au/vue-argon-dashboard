@@ -17,6 +17,21 @@
       </li>
 
       <li class="nav-item">
+        <sidenav-item url="device-dashboard" :class="getRoute() === 'device-dashboard' ? 'active' : ''" :navText="'Device Dashboard'">
+          <template v-slot:icon>
+            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+          </template>
+        </sidenav-item>
+      </li>
+      <li class="nav-item">
+        <sidenav-item url="adjust-dashboard" :class="getRoute() === 'adjust-dashboard' ? 'active' : ''" :navText="'Adjust Rates Dashboard'">
+          <template v-slot:icon>
+            <i class="ni ni-tv-2 text-primary text-sm opacity-10"></i>
+          </template>
+        </sidenav-item>
+      </li>
+
+      <li class="nav-item">
         <sidenav-item url="license-plate-recognition" :class="getRoute() === 'license-plate-recognition' ? 'active' : ''" :navText="'Plate Recognition'">
           <template v-slot:icon>
             <!-- 使用 FontAwesome 的汽车图标 -->

@@ -8,12 +8,12 @@
         <table class="table align-items-center mb-0">
           <thead>
             <tr>
-              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Parking</th>
-              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Vehicle Number</th>
-              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Parking Duration</th>
-              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Start & Time</th>
-              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">End & Time</th>
-              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> PaymentAmount </th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">停车场</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">车牌号</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">停车时长</th>
+              <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">起始时间</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">结束时间</th>
+              <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> 支付金额 </th>
             </tr>
           </thead>
           <tbody>
