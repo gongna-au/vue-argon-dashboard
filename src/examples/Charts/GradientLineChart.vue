@@ -25,15 +25,15 @@ export default {
   props: {
     title: {
       type: String,
-      default: "Sales overview",
+      default: "停车位可用性预测",
     },
     detail1: {
       type: String,
-      default: "4% more",
+      default: "",
     },
     detail2: {
       type: String,
-      default: "in 2023",
+      default: "7 AM to 5 PM",
     },
   },
 
@@ -45,37 +45,34 @@ export default {
     gradientStroke1.addColorStop(1, "rgba(94, 114, 228, 0.2)");
     gradientStroke1.addColorStop(0.2, "rgba(94, 114, 228, 0.0)");
     gradientStroke1.addColorStop(0, "rgba(94, 114, 228, 0)");
+
     new Chart(ctx1, {
       type: "line",
       data: {
-        labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-        datasets: [
-          {
-            label: "Mobile apps",
-            tension: 0.4,
-            borderWidth: 0,
-            pointRadius: 0,
-            borderColor: "#4BB543 ",
-            backgroundColor: gradientStroke1,
-            // eslint-disable-next-line no-dupe-keys
-            borderWidth: 3,
-            fill: true,
-            data: [50, 40, 300, 220, 500, 250, 400, 230, 500],
-            maxBarThickness: 6,
-          },
-        ],
+        labels: ["7 AM", "8 AM", "9 AM", "10 AM", "11 AM", "12 PM", "1 PM", "2 PM", "3 PM", "4 PM", "5 PM"],
+        datasets: [{
+          label: "Visitors",
+          tension: 0.4,
+          borderWidth: 3,
+          pointRadius: 0,
+          borderColor: "#4BB543",
+          backgroundColor: gradientStroke1,
+          fill: true,
+          data: [30, 75, 60, 49, 60, 70, 40, 45, 80, 120, 60],
+          maxBarThickness: 6
+        }],
       },
       options: {
         responsive: true,
         maintainAspectRatio: false,
         plugins: {
           legend: {
-            display: false,
-          },
+            display: false
+          }
         },
         interaction: {
           intersect: false,
-          mode: "index",
+          mode: 'index'
         },
         scales: {
           y: {

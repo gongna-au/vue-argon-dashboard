@@ -65,10 +65,10 @@
             <div class="card">
               <div class="p-3 pb-0 card-header">
                 <div class="d-flex justify-content-between">
-                  <h6 class="mb-2">Sales Report</h6>
+                  <h6 class="mb-2">营收报告</h6>
                   <div>
                     <input type="date" v-model="selectedDate" />
-                    <button @click="fetchSalesData">Select Date</button>
+                    <button @click="fetchSalesData">选择日期</button>
                   </div>
                 </div>
               </div>
@@ -78,32 +78,32 @@
                     <tr v-for="(sale, index) in sales" :key="index">
                       <td class="text-sm align-middle">
                         <div class="text-center col">
-                          <p class="mb-0 text-xs font-weight-bold">Date:</p>
+                          <p class="mb-0 text-xs font-weight-bold">日期:</p>
                           <h6 class="mb-0 text-sm">{{ sale.Date }}</h6>
                         </div>
                       </td>
                       <td class="text-sm align-middle">
                         <div class="text-center col">
-                          <p class="mb-0 text-xs font-weight-bold">TotalRevenue:</p>
+                          <p class="mb-0 text-xs font-weight-bold">总收入:</p>
                           <h6 class="mb-0 text-sm">{{ sale.TotalRevenue }}</h6>
                         </div>
                       </td>
                       <td class="text-sm align-middle">
                         <div class="text-center col">
-                          <p class="mb-0 text-xs font-weight-bold">TotalParkings:</p>
+                          <p class="mb-0 text-xs font-weight-bold">总停车数:</p>
                           <h6 class="mb-0 text-sm">{{ sale.TotalParkings }}</h6>
                         </div>
                       </td>
 
                       <td class="text-sm align-middle">
                         <div class="text-center col">
-                          <p class="mb-0 text-xs font-weight-bold">MinDuration:</p>
+                          <p class="mb-0 text-xs font-weight-bold">最短停车时间:</p>
                           <h6 class="mb-0 text-sm">{{ sale.MinDuration }}</h6>
                         </div>
                       </td>
                       <td class="text-sm align-middle">
                         <div class="text-center col">
-                          <p class="mb-0 text-xs font-weight-bold">MaxDuration:</p>
+                          <p class="mb-0 text-xs font-weight-bold">最长停车时间:</p>
                           <h6 class="mb-0 text-sm">{{ sale.MaxDuration }}</h6>
                         </div>
                       </td>
