@@ -7,7 +7,7 @@ $ vue --version
 
 or 
 ```shell
-npm install -g @vue/cli
+npm install -g @vue/clix
 ```
 
 ```shell
